@@ -87,55 +87,80 @@ export default function Header() {
         </div>
       </div>
 
-      {isMobileMenuOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/50 z-40 md:hidden"
-            onClick={closeMobileMenu}
-          />
-          <div className="fixed top-16 right-0 bottom-0 w-72 bg-white dark:bg-[#1a1614] border-l-2 border-licorice/20 dark:border-mindaro/40 shadow-2xl z-50 md:hidden overflow-y-auto">
-            <nav className="flex flex-col p-4 space-y-2">
-              {navigation.map((item) => {
-                const isActive = pathname === item.href;
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={closeMobileMenu}
-                    className={`px-4 py-3 rounded-lg text-base font-semibold transition-all ${
-                      isActive
-                        ? "bg-giants-orange dark:bg-mindaro text-white dark:text-licorice shadow-lg"
-                        : "text-licorice dark:text-baby-powder hover:bg-giants-orange/10 dark:hover:bg-mindaro/20 hover:text-giants-orange dark:hover:text-mindaro border-2 border-transparent hover:border-giants-orange/30 dark:hover:border-mindaro/30"
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                );
-              })}
-            </nav>
+      <div
+        className={`fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300 ${
+          isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={closeMobileMenu}
+      />
+      <div
+        className={`fixed top-0 right-0 h-screen w-80 max-w-[85vw] bg-white dark:bg-[#1a1614] border-l-2 border-licorice/20 dark:border-mindaro/40 shadow-2xl z-50 md:hidden overflow-y-auto transition-transform duration-300 ease-in-out ${
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="p-6">
+          <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-licorice/20 dark:border-mindaro/40">
+            <h2 className="text-xl font-bold text-licorice dark:text-baby-powder">
+              Menu
+            </h2>
+            <button
+              onClick={closeMobileMenu}
+              className="p-2 rounded-lg text-licorice dark:text-baby-powder hover:bg-giants-orange/10 dark:hover:bg-mindaro/20 transition-colors"
+              aria-label="Close menu"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
 
-            <div className="border-t-2 border-licorice/20 dark:border-mindaro/40 mt-4 pt-4 px-4 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-licorice dark:text-baby-powder">
-                  Theme
-                </span>
+          <nav className="flex flex-col space-y-2 mb-6">
+            {navigation.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={closeMobileMenu}
+                  className={`px-4 py-3 rounded-lg text-base font-semibold transition-all ${
+                    isActive
+                      ? "bg-giants-orange dark:bg-mindaro text-white dark:text-licorice shadow-lg"
+                      : "text-licorice dark:text-baby-powder hover:bg-giants-orange/10 dark:hover:bg-mindaro/20 hover:text-giants-orange dark:hover:text-mindaro border-2 border-transparent hover:border-giants-orange/30 dark:hover:border-mindaro/30"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="border-t-2 border-licorice/20 dark:border-mindaro/40 pt-4 space-y-3">
+            <button
+              onClick={() => {
+                const themeButton = document.querySelector(
+                  "[data-theme-toggle]"
+                ) as HTMLElement;
+                themeButton?.click();
+              }}
+              className="w-full px-4 py-3 rounded-lg text-left font-semibold text-licorice dark:text-baby-powder hover:bg-giants-orange/10 dark:hover:bg-mindaro/20 border-2 border-licorice/20 dark:border-mindaro/40 hover:border-giants-orange/30 dark:hover:border-mindaro/30 transition-all flex items-center justify-between"
+            >
+              <span>Toggle Theme</span>
+              <div data-theme-toggle className="inline-flex">
                 <ThemeToggle />
               </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  handleLogout();
-                  closeMobileMenu();
-                }}
-                className="w-full font-semibold"
-              >
-                Logout
-              </Button>
-            </div>
+            </button>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => {
+                handleLogout();
+                closeMobileMenu();
+              }}
+              className="w-full font-semibold"
+            >
+              Logout
+            </Button>
           </div>
-        </>
-      )}
+        </div>
+      </div>
     </header>
   );
 }
