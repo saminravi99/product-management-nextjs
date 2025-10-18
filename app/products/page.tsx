@@ -1,13 +1,15 @@
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/products/ProductCard";
 import ProductsSearch from "@/components/products/ProductsSearch";
 import { Button } from "@/components/ui/button";
 import { fetchProducts } from "@/lib/actions/products";
+import type { Product } from "@/types";
 import { Package, Plus } from "lucide-react";
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Products - ProductHub",
@@ -18,7 +20,9 @@ interface ProductsPageProps {
   searchParams: Promise<{ search?: string; page?: string }>;
 }
 
-export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+export default async function ProductsPage({
+  searchParams,
+}: ProductsPageProps) {
   const cookieStore = await cookies();
   const token = cookieStore.get("token");
 
@@ -97,7 +101,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         {!error && products.length > 0 && (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
-              {products.map((product) => (
+              {products.map((product: Product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
@@ -164,12 +168,13 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
             )}
 
             <p className="text-center text-sm text-[#261c15]/70 mt-4">
-              Showing {offset + 1}-{Math.min(offset + itemsPerPage, total || 0)} of{" "}
-              {total} products
+              Showing {offset + 1}-{Math.min(offset + itemsPerPage, total || 0)}{" "}
+              of {total} products
             </p>
           </>
         )}
       </main>
+      <Footer />
     </div>
   );
 }

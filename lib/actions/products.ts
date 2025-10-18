@@ -17,10 +17,37 @@ export async function fetchProducts(params?: {
     offset?: number;
     limit?: number;
     categoryId?: string;
-}): Promise<Product[]> {
+    search?: string;
+}): Promise<{ products: Product[]; total: number; error?: string }> {
     const token = await getAuthToken();
-    const queryParams = new URLSearchParams();
 
+    // If search is provided, use search endpoint
+    if (params?.search && params.search.trim()) {
+        try {
+            const response = await fetch(
+                `${API_BASE_URL}/products/search?searchedText=${encodeURIComponent(params.search)}`,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        ...(token && { Authorization: `Bearer ${token}` }),
+                    },
+                    cache: "no-store",
+                }
+            );
+
+            if (!response.ok) {
+                return { products: [], total: 0, error: "Failed to search products" };
+            }
+
+            const products = await response.json();
+            return { products, total: products.length };
+        } catch (error) {
+            console.error("Error searching products:", error);
+            return { products: [], total: 0, error: "Failed to search products" };
+        }
+    }
+
+    const queryParams = new URLSearchParams();
     if (params?.offset !== undefined) queryParams.append("offset", String(params.offset));
     if (params?.limit !== undefined) queryParams.append("limit", String(params.limit));
     if (params?.categoryId) queryParams.append("categoryId", params.categoryId);
@@ -34,19 +61,20 @@ export async function fetchProducts(params?: {
                 ...(token && { Authorization: `Bearer ${token}` }),
             },
             next: {
-                revalidate: 60, // Revalidate every 60 seconds (ISR)
+                revalidate: 60,
                 tags: ["products"],
             },
         });
 
         if (!response.ok) {
-            throw new Error(`Failed to fetch products: ${response.statusText}`);
+            return { products: [], total: 0, error: `Failed to fetch products: ${response.statusText}` };
         }
 
-        return response.json();
+        const products = await response.json();
+        return { products, total: products.length };
     } catch (error) {
         console.error("Error fetching products:", error);
-        return [];
+        return { products: [], total: 0, error: "Failed to fetch products" };
     }
 }
 

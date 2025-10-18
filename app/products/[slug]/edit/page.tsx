@@ -1,129 +1,91 @@
-"use client";
-
 import Header from "@/components/layout/Header";
 import ProductForm from "@/components/products/ProductForm";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
-import { apiClient } from "@/lib/api/client";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
-import {
-  clearCurrentProduct,
-  fetchProductBySlug,
-  updateProduct,
-} from "@/lib/redux/productsSlice";
+import { Button } from "@/components/ui/button";
+import { fetchCategories, fetchProductBySlug, updateProduct } from "@/lib/actions/products";
 import type { ProductFormData } from "@/types";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Package } from "lucide-react";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
-export default function EditProductPage({
-  params,
-}: {
+interface EditProductPageProps {
   params: Promise<{ slug: string }>;
-}) {
-  const router = useRouter();
-  const dispatch = useAppDispatch();
-  const { currentProduct: product, loading } = useAppSelector(
-    (state) => state.products
-  );
-  const { token, isAuthenticated } = useAppSelector((state) => state.auth);
-  const [slug, setSlug] = useState<string>("");
+}
 
-  useEffect(() => {
-    params.then((p) => setSlug(p.slug));
-  }, [params]);
+export async function generateMetadata({ params }: EditProductPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const product = await fetchProductBySlug(slug);
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/login");
-      return;
-    }
-
-    if (token) {
-      apiClient.setToken(token);
-    }
-
-    if (slug) {
-      dispatch(fetchProductBySlug(slug));
-    }
-
-    return () => {
-      dispatch(clearCurrentProduct());
-    };
-  }, [dispatch, slug, token, isAuthenticated, router]);
-
-  const handleSubmit = async (data: ProductFormData) => {
-    if (!product) return;
-
-    try {
-      await dispatch(updateProduct({ id: product.id, data })).unwrap();
-      router.push(`/products/${slug}`);
-    } catch (error) {
-      console.error("Failed to update product:", error);
-      throw error;
-    }
+  return {
+    title: product ? `Edit ${product.name} - ProductHub` : "Edit Product - ProductHub",
   };
+}
 
-  if (!isAuthenticated) {
-    return null;
+export default async function EditProductPage({ params }: EditProductPageProps) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token");
+
+  if (!token) {
+    redirect("/login");
   }
 
-  if (loading || !product) {
+  const { slug } = await params;
+  const [product, categories] = await Promise.all([
+    fetchProductBySlug(slug),
+    fetchCategories(),
+  ]);
+
+  if (!product) {
     return (
-      <div className="min-h-screen bg-baby-powder">
+      <div className="min-h-screen bg-[#f7f7f2]">
         <Header />
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <LoadingSpinner size="lg" />
-        </div>
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="bg-white rounded-xl shadow-md p-12 text-center border-2 border-[#261c15]">
+            <Package className="w-16 h-16 text-[#261c15]/40 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold text-[#261c15] mb-2">
+              Product Not Found
+            </h2>
+            <p className="text-[#261c15]/70 mb-6">
+              The product you&apos;re trying to edit doesn&apos;t exist.
+            </p>
+            <Button asChild>
+              <Link href="/products">Back to Products</Link>
+            </Button>
+          </div>
+        </main>
       </div>
     );
   }
 
-  const initialData: ProductFormData = {
-    name: product.name,
-    description: product.description,
-    price: product.price,
-    images: product.images,
-    categoryId: product.category.id,
+  const handleSubmit = async (data: ProductFormData) => {
+    "use server";
+    await updateProduct(product.id, data);
   };
 
   return (
-    <div className="min-h-screen bg-baby-powder">
+    <div className="min-h-screen bg-[#f7f7f2]">
       <Header />
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-3xl">
-        {/* Breadcrumb */}
-        <nav className="mb-6 flex items-center space-x-2 text-sm">
-          <button
-            onClick={() => router.push("/products")}
-            className="text-giants-orange hover:underline"
-          >
-            Products
-          </button>
-          <span className="text-gray-400">/</span>
-          <button
-            onClick={() => router.push(`/products/${slug}`)}
-            className="text-giants-orange hover:underline"
-          >
-            {product.name}
-          </button>
-          <span className="text-gray-400">/</span>
-          <span className="text-gray-600">Edit</span>
-        </nav>
-
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-licorice mb-2">
+          <h1 className="text-4xl font-bold text-[#261c15] mb-2">
             Edit Product
           </h1>
-          <p className="text-gray-600">
-            Update the details of {product.name}. All fields marked with * are
-            required.
+          <p className="text-[#261c15]/70">
+            Update product information. All fields marked with * are required.
           </p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-md p-6 sm:p-8 border border-gray-200">
+        <div className="bg-white rounded-xl shadow-md p-6 sm:p-8 border-2 border-[#261c15]">
           <ProductForm
-            initialData={initialData}
+            initialData={{
+              ...product,
+              id: product.id,
+            }}
             onSubmit={handleSubmit}
             isEdit
+            categories={categories}
           />
         </div>
       </main>
