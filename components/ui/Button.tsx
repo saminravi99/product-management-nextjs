@@ -14,11 +14,12 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
-          "border-2 border-licorice bg-transparent shadow-sm hover:bg-beige hover:text-licorice focus-visible:ring-licorice",
+          "border-2 border-licorice bg-transparent shadow-sm hover:bg-beige hover:text-licorice focus-visible:ring-licorice dark:border-baby-powder dark:hover:bg-baby-powder/10 dark:hover:text-baby-powder",
         secondary:
           "bg-mindaro text-licorice shadow-sm hover:bg-mindaro/80 focus-visible:ring-mindaro",
-        ghost: "hover:bg-beige hover:text-licorice",
-        link: "text-giants-orange underline-offset-4 hover:underline",
+        ghost:
+          "text-licorice hover:bg-beige hover:text-licorice dark:text-baby-powder dark:hover:bg-baby-powder/10 dark:hover:text-baby-powder",
+        link: "text-giants-orange underline-offset-4 hover:underline dark:text-giants-orange",
       },
       size: {
         default: "h-10 px-4 py-2",

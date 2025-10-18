@@ -24,6 +24,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Dark mode styles */
+.dark body {
+  background-color: #1a1410;
+  color: var(--color-baby-powder);
+}
+
+.dark {
+  --card-bg: rgba(38, 28, 21, 0.6);
+  --card-border: rgba(197, 216, 109, 0.3);
+  --hover-bg: rgba(197, 216, 109, 0.1);
+}
+
 * {
   box-sizing: border-box;
 }

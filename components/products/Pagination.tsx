@@ -1,0 +1,140 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+  itemsPerPage: number;
+  onItemsPerPageChange: (items: number) => void;
+  totalItems: number;
+}
+
+export function Pagination({
+  currentPage,
+  totalPages,
+  onPageChange,
+  itemsPerPage,
+  onItemsPerPageChange,
+  totalItems,
+}: PaginationProps) {
+  const startItem = (currentPage - 1) * itemsPerPage + 1;
+  const endItem = Math.min(currentPage * itemsPerPage, totalItems);
+
+  const getPageNumbers = () => {
+    const pages: (number | string)[] = [];
+    const showEllipsis = totalPages > 7;
+
+    if (!showEllipsis) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+
+    // Always show first page
+    pages.push(1);
+
+    if (currentPage > 3) {
+      pages.push("...");
+    }
+
+    // Show pages around current page
+    for (
+      let i = Math.max(2, currentPage - 1);
+      i <= Math.min(totalPages - 1, currentPage + 1);
+      i++
+    ) {
+      pages.push(i);
+    }
+
+    if (currentPage < totalPages - 2) {
+      pages.push("...");
+    }
+
+    // Always show last page
+    if (totalPages > 1) {
+      pages.push(totalPages);
+    }
+
+    return pages;
+  };
+
+  return (
+    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4 px-2">
+      {/* Items per page selector */}
+      <div className="flex items-center gap-2">
+        <span className="text-sm text-licorice/70 dark:text-baby-powder/70">
+          Show:
+        </span>
+        <select
+          value={itemsPerPage}
+          onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
+          className="px-3 py-1.5 rounded-lg border-2 border-licorice/20 dark:border-mindaro/30 
+                   bg-white dark:bg-licorice/50 text-licorice dark:text-baby-powder
+                   text-sm focus:outline-none focus:ring-2 focus:ring-giants-orange
+                   hover:border-giants-orange transition-colors cursor-pointer"
+        >
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+          <option value={50}>50</option>
+          <option value={100}>100</option>
+        </select>
+        <span className="text-sm text-licorice/70 dark:text-baby-powder/70">
+          items per page
+        </span>
+      </div>
+
+      {/* Page info and navigation */}
+      <div className="flex flex-col sm:flex-row items-center gap-4">
+        {/* Results info */}
+        <span className="text-sm text-licorice/70 dark:text-baby-powder/70">
+          Showing {startItem}-{endItem} of {totalItems} products
+        </span>
+
+        {/* Page buttons */}
+        <div className="flex items-center gap-1">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => onPageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="h-9 w-9 p-0"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+
+          {getPageNumbers().map((page, index) =>
+            typeof page === "number" ? (
+              <Button
+                key={index}
+                variant={currentPage === page ? "default" : "outline"}
+                size="sm"
+                onClick={() => onPageChange(page)}
+                className="h-9 w-9 p-0"
+              >
+                {page}
+              </Button>
+            ) : (
+              <span
+                key={index}
+                className="h-9 w-9 flex items-center justify-center text-licorice/50 dark:text-baby-powder/50"
+              >
+                {page}
+              </span>
+            )
+          )}
+
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => onPageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="h-9 w-9 p-0"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}

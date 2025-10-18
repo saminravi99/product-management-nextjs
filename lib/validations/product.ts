@@ -14,7 +14,7 @@ export const productFormSchema = z.object({
         .min(10, "Description must be at least 10 characters")
         .max(1000, "Description must not exceed 1000 characters"),
     price: z
-        .number({ invalid_type_error: "Price must be a number" })
+        .number({ message: "Price must be a number" })
         .positive("Price must be greater than 0")
         .max(1000000, "Price must not exceed 1,000,000"),
     category: z

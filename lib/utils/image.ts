@@ -22,7 +22,7 @@ export function isValidImageUrl(url: string | undefined): boolean {
  * @returns Default product image path
  */
 export function getDefaultProductImage(): string {
-    return "/images/product-placeholder.png";
+    return "/images/product-placeholder.svg";
 }
 
 /**

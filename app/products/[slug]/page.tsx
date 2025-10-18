@@ -1,5 +1,3 @@
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 import ProductDetails from "@/components/products/ProductDetails";
 import { Button } from "@/components/ui/button";
 import { fetchProductBySlug } from "@/lib/actions/products";
@@ -51,34 +49,22 @@ export default async function ProductDetailPage({
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-baby-powder flex flex-col">
-        <Header />
-        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
-          <div className="bg-white rounded-xl shadow-md p-12 text-center border-2 border-licorice">
-            <Package className="w-16 h-16 text-licorice/40 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-licorice mb-2">
-              Product Not Found
-            </h2>
-            <p className="text-licorice/70 mb-6">
-              The product you&apos;re looking for doesn&apos;t exist.
-            </p>
-            <Button asChild>
-              <Link href="/products">Back to Products</Link>
-            </Button>
-          </div>
-        </main>
-        <Footer />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="bg-white dark:bg-licorice/50 rounded-xl shadow-md p-12 text-center border-2 border-licorice dark:border-mindaro">
+          <Package className="w-16 h-16 text-licorice/40 dark:text-baby-powder/40 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-licorice dark:text-baby-powder mb-2">
+            Product Not Found
+          </h2>
+          <p className="text-licorice/70 dark:text-baby-powder/70 mb-6">
+            The product you&apos;re looking for doesn&apos;t exist.
+          </p>
+          <Button asChild>
+            <Link href="/products">Back to Products</Link>
+          </Button>
+        </div>
       </div>
     );
   }
 
-  return (
-    <div className="min-h-screen bg-baby-powder flex flex-col">
-      <Header />
-      <div className="flex-1">
-        <ProductDetails product={product} />
-      </div>
-      <Footer />
-    </div>
-  );
+  return <ProductDetails product={product} />;
 }
