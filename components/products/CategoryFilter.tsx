@@ -132,13 +132,13 @@ export function CategoryFilter({
       </div>
 
       <div
-        className={`lg:hidden fixed inset-0 bg-black/50 z-50 transition-opacity duration-300 ${
+        className={`lg:hidden fixed inset-0 bg-black/50 z-[60] transition-opacity duration-300 ${
           isMobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsMobileOpen(false)}
       />
       <div
-        className={`lg:hidden fixed inset-y-0 right-0 w-80 max-w-full bg-baby-powder dark:bg-[#1a1410] z-50 shadow-2xl overflow-y-auto transition-transform duration-300 ease-in-out ${
+        className={`lg:hidden fixed inset-y-0 right-0 w-80 max-w-full bg-baby-powder dark:bg-[#1a1410] z-[70] shadow-2xl overflow-y-auto transition-transform duration-300 ease-in-out ${
           isMobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

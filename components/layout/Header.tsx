@@ -88,13 +88,13 @@ export default function Header() {
       </div>
 
       <div
-        className={`fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/50 z-[60] md:hidden transition-opacity duration-300 ${
           isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={closeMobileMenu}
       />
       <div
-        className={`fixed top-0 right-0 h-screen w-80 max-w-[85vw] bg-white dark:bg-[#1a1614] border-l-2 border-licorice/20 dark:border-mindaro/40 shadow-2xl z-50 md:hidden overflow-y-auto transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-screen w-80 max-w-[85vw] bg-white dark:bg-[#1a1614] border-l-2 border-licorice/20 dark:border-mindaro/40 shadow-2xl z-[70] md:hidden overflow-y-auto transition-transform duration-300 ease-in-out ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
