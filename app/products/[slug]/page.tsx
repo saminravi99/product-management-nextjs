@@ -11,7 +11,6 @@ interface ProductDetailPageProps {
   params: Promise<{ slug: string }>;
 }
 
-// Enable dynamic rendering for real-time product data
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({

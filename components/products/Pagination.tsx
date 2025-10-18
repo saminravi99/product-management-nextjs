@@ -31,14 +31,12 @@ export function Pagination({
       return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
 
-    // Always show first page
     pages.push(1);
 
     if (currentPage > 3) {
       pages.push("...");
     }
 
-    // Show pages around current page
     for (
       let i = Math.max(2, currentPage - 1);
       i <= Math.min(totalPages - 1, currentPage + 1);
@@ -51,7 +49,6 @@ export function Pagination({
       pages.push("...");
     }
 
-    // Always show last page
     if (totalPages > 1) {
       pages.push(totalPages);
     }
@@ -61,7 +58,6 @@ export function Pagination({
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4 px-2">
-      {/* Items per page selector */}
       <div className="flex items-center gap-2">
         <span className="text-sm font-semibold text-licorice dark:text-baby-powder">
           Show:
@@ -84,14 +80,11 @@ export function Pagination({
         </span>
       </div>
 
-      {/* Page info and navigation */}
       <div className="flex flex-col sm:flex-row items-center gap-4">
-        {/* Results info */}
         <span className="text-sm font-semibold text-licorice dark:text-baby-powder">
           Showing {startItem}-{endItem} of {totalItems} products
         </span>
 
-        {/* Page buttons */}
         <div className="flex items-center gap-1">
           <Button
             variant="outline"

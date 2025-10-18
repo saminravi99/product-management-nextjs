@@ -16,12 +16,10 @@ export function ProductsGrid({ products }: ProductsGridProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Get state from URL query params
   const selectedCategory = searchParams.get("category") || null;
   const currentPage = parseInt(searchParams.get("page") || "1");
   const itemsPerPage = parseInt(searchParams.get("limit") || "10");
 
-  // Update URL with new params
   const updateURL = (params: Record<string, string | null>) => {
     const newParams = new URLSearchParams(searchParams.toString());
 
@@ -36,13 +34,11 @@ export function ProductsGrid({ products }: ProductsGridProps) {
     router.push(`?${newParams.toString()}`, { scroll: false });
   };
 
-  // Get unique categories
   const categories = useMemo(() => {
     const cats = new Set(products.map((p) => p.category.name));
     return Array.from(cats).sort();
   }, [products]);
 
-  // Get product counts by category
   const productCounts = useMemo(() => {
     const counts: Record<string, number> = { all: products.length };
     products.forEach((p) => {
@@ -51,13 +47,11 @@ export function ProductsGrid({ products }: ProductsGridProps) {
     return counts;
   }, [products]);
 
-  // Filter products by category
   const filteredProducts = useMemo(() => {
     if (!selectedCategory) return products;
     return products.filter((p) => p.category.name === selectedCategory);
   }, [products, selectedCategory]);
 
-  // Paginate products
   const paginatedProducts = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -66,13 +60,12 @@ export function ProductsGrid({ products }: ProductsGridProps) {
 
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
-  // Handle filter/pagination changes via URL params
   const handleCategoryChange = (category: string | null) => {
-    updateURL({ category, page: "1" }); // Reset to page 1 on category change
+    updateURL({ category, page: "1" });
   };
 
   const handleItemsPerPageChange = (items: number) => {
-    updateURL({ limit: items.toString(), page: "1" }); // Reset to page 1 on limit change
+    updateURL({ limit: items.toString(), page: "1" });
   };
 
   const handlePageChange = (page: number) => {
@@ -119,14 +112,12 @@ export function ProductsGrid({ products }: ProductsGridProps) {
       </div>
 
       <div className="flex-1 min-w-0">
-        {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 mb-6">
           {paginatedProducts.map((product: Product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
 
-        {/* Pagination */}
         {totalPages > 1 && (
           <Pagination
             currentPage={currentPage}
@@ -138,7 +129,6 @@ export function ProductsGrid({ products }: ProductsGridProps) {
           />
         )}
 
-        {/* Results summary for single page */}
         {totalPages === 1 && (
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center gap-2">

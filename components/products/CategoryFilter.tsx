@@ -21,7 +21,6 @@ export function CategoryFilter({
 
   const FilterContent = () => (
     <div className="space-y-4">
-      {/* Header */}
       <div className="flex items-center justify-between pb-4 border-b-2 border-licorice/20 dark:border-mindaro/30">
         <h3 className="text-lg font-bold text-licorice dark:text-baby-powder">
           Categories
@@ -41,7 +40,6 @@ export function CategoryFilter({
         )}
       </div>
 
-      {/* All Products */}
       <button
         onClick={() => {
           onCategoryChange(null);
@@ -69,7 +67,6 @@ export function CategoryFilter({
         </div>
       </button>
 
-      {/* Category buttons */}
       <div className="space-y-2">
         {categories.map((category) => (
           <button
@@ -106,14 +103,12 @@ export function CategoryFilter({
 
   return (
     <>
-      {/* Desktop Sidebar */}
       <div className="hidden lg:block flex-shrink-0">
         <div className="sticky top-20 bg-white dark:bg-[#1a1614] p-6 rounded-xl border-2 border-licorice/20 dark:border-mindaro/40 shadow-xl dark:shadow-mindaro/20 backdrop-blur-sm">
           <FilterContent />
         </div>
       </div>
 
-      {/* Mobile Filter Button */}
       <div className="lg:hidden fixed bottom-6 right-6 z-40">
         <Button
           onClick={() => setIsMobileOpen(true)}
@@ -136,7 +131,6 @@ export function CategoryFilter({
         </Button>
       </div>
 
-      {/* Mobile Sidebar Overlay */}
       {isMobileOpen && (
         <>
           <div

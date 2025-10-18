@@ -17,7 +17,6 @@ export default function ProductsLayout({
     <div className="min-h-screen bg-baby-powder dark:bg-licorice flex flex-col transition-colors duration-300">
       <Header />
       <main className="flex-1">{children}</main>
-      <Footer />
     </div>
   );
 }

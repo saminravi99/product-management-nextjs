@@ -30,7 +30,6 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageError, setImageError] = useState(false);
 
-  // Check if the current image is valid - with null safety
   const currentImageUrl = product.images?.[currentImageIndex];
   const hasValidImage =
     !imageError && currentImageUrl && isValidImageUrl(currentImageUrl);

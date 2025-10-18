@@ -28,11 +28,9 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [imageError, setImageError] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Check if the product has a valid image URL - with null safety
   const hasValidImage =
     !imageError && product.images?.[0] && isValidImageUrl(product.images[0]);
 
-  // Use valid image or placeholder
   const imageUrl = hasValidImage ? product.images[0] : getDefaultProductImage();
 
   const handleDelete = async () => {

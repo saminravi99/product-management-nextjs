@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   description: "Browse and manage your product catalog",
 };
 
-// Enable ISR with revalidation every 60 seconds
 export const revalidate = 60;
 
 interface ProductsPageProps {
@@ -33,7 +32,6 @@ export default async function ProductsPage({
   const params = await searchParams;
   const searchQuery = params.search || "";
 
-  // Fetch all products for client-side filtering and pagination
   const { products, error } = await fetchProducts({
     search: searchQuery,
   });
