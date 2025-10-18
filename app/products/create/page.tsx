@@ -28,10 +28,10 @@ export default async function CreateProductPage() {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-3xl">
       <div className="mb-8">
-          <h1 className="text-4xl font-bold text-licorice mb-2">
-            Create New Product
-          </h1>
-          <p className="text-licorice/70">
+        <h1 className="text-4xl font-bold text-licorice mb-2">
+          Create New Product
+        </h1>
+        <p className="text-licorice/70">
           Add a new product to your catalog. All fields marked with * are
           required.
         </p>

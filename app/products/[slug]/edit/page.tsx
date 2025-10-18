@@ -72,25 +72,23 @@ export default async function EditProductPage({
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-3xl">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-licorice mb-2">
-          Edit Product
-        </h1>
+        <h1 className="text-4xl font-bold text-licorice mb-2">Edit Product</h1>
         <p className="text-licorice/70">
           Update product information. All fields marked with * are required.
         </p>
       </div>
 
       <div className="bg-white rounded-xl shadow-md p-6 sm:p-8 border-2 border-licorice">
-          <ProductForm
-            initialData={{
-              name: product.name,
-              description: product.description,
-              price: product.price,
-              images: product.images,
-              categoryId: product.category.id,
-              id: product.id,
-            }}
-            onSubmit={handleSubmit}
+        <ProductForm
+          initialData={{
+            name: product.name,
+            description: product.description,
+            price: product.price,
+            images: product.images,
+            categoryId: product.category.id,
+            id: product.id,
+          }}
+          onSubmit={handleSubmit}
           isEdit
           categories={categories}
         />
