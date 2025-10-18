@@ -1,11 +1,29 @@
-import ProductForm from "@/components/products/ProductForm";
 import { createProduct, fetchCategories } from "@/lib/actions/products";
 import type { ProductFormData } from "@/types";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+
+const ProductForm = dynamic(() => import("@/components/products/ProductForm"), {
+  loading: () => (
+    <div className="animate-pulse h-96 bg-gray-200 dark:bg-gray-700 rounded-lg"></div>
+  ),
+});
 
 export const metadata: Metadata = {
-  title: "Create Product - ProductHub",
-  description: "Add a new product to your catalog",
+  title: "Create Product - ProductHub | Add New Product",
+  description:
+    "Add a new product to your catalog with ProductHub. Fill in product details, upload images, set pricing, manage stock levels, and categorize your items efficiently. Streamline your product creation workflow.",
+  keywords: [
+    "create product",
+    "add product",
+    "new product",
+    "product form",
+    "inventory management",
+  ],
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default async function CreateProductPage() {
