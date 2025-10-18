@@ -1,5 +1,3 @@
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 import ProductCard from "@/components/products/ProductCard";
 import ProductsSearch from "@/components/products/ProductsSearch";
 import { Button } from "@/components/ui/button";
@@ -45,10 +43,7 @@ export default async function ProductsPage({
   const totalPages = Math.ceil((total || 0) / itemsPerPage);
 
   return (
-    <div className="min-h-screen bg-[#f7f7f2]">
-      <Header />
-
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-[#261c15] mb-2">Products</h1>
           <p className="text-[#261c15]/70">
@@ -167,14 +162,12 @@ export default async function ProductsPage({
               </div>
             )}
 
-            <p className="text-center text-sm text-[#261c15]/70 mt-4">
+            <p className="text-center text-sm text-licorice/70 mt-4">
               Showing {offset + 1}-{Math.min(offset + itemsPerPage, total || 0)}{" "}
               of {total} products
             </p>
           </>
         )}
-      </main>
-      <Footer />
     </div>
   );
 }

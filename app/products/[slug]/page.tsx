@@ -1,6 +1,6 @@
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
-import ProductDetailClient from "@/components/products/ProductDetailClient";
+import ProductDetails from "@/components/products/ProductDetails";
 import { Button } from "@/components/ui/button";
 import { fetchProductBySlug } from "@/lib/actions/products";
 import { Package } from "lucide-react";
@@ -76,7 +76,7 @@ export default async function ProductDetailPage({
     <div className="min-h-screen bg-[#f7f7f2] flex flex-col">
       <Header />
       <div className="flex-1">
-        <ProductDetailClient product={product} />
+        <ProductDetails product={product} />
       </div>
       <Footer />
     </div>

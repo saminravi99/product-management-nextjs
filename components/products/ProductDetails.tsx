@@ -18,11 +18,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-interface ProductDetailClientProps {
+interface ProductDetailsProps {
   product: Product;
 }
 
-export default function ProductDetailClient({ product }: ProductDetailClientProps) {
+export default function ProductDetails({ product }: ProductDetailsProps) {
   const router = useRouter();
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -58,10 +58,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
     <>
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <nav className="mb-6 flex items-center space-x-2 text-sm">
-          <Link
-            href="/products"
-            className="text-[#f05d23] hover:underline"
-          >
+          <Link href="/products" className="text-[#f05d23] hover:underline">
             Products
           </Link>
           <span className="text-[#261c15]/40">/</span>
@@ -166,7 +163,9 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 {formatDate(product.createdAt)}
               </p>
               <p>
-                <span className="font-medium text-[#261c15]">Last Updated:</span>{" "}
+                <span className="font-medium text-[#261c15]">
+                  Last Updated:
+                </span>{" "}
                 {formatDate(product.updatedAt)}
               </p>
             </div>
@@ -196,7 +195,8 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
           <DialogHeader>
             <DialogTitle>Delete Product</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete &ldquo;{product.name}&rdquo;? This action cannot be undone.
+              Are you sure you want to delete &ldquo;{product.name}&rdquo;? This
+              action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>

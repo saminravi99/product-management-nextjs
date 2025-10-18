@@ -9,7 +9,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.bitechx.com
 async function getAuthToken(): Promise<string | null> {
     const { cookies } = await import("next/headers");
     const cookieStore = await cookies();
-    return cookieStore.get("auth_token")?.value || null;
+    return cookieStore.get("token")?.value || null;
 }
 
 // Products Actions
@@ -288,7 +288,7 @@ export async function authenticateUser(email: string): Promise<{ success: boolea
         // Set auth token in cookie
         const { cookies } = await import("next/headers");
         const cookieStore = await cookies();
-        cookieStore.set("auth_token", data.token, {
+        cookieStore.set("token", data.token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: "lax",
@@ -312,7 +312,7 @@ export async function authenticateUser(email: string): Promise<{ success: boolea
 export async function logoutUser(): Promise<void> {
     const { cookies } = await import("next/headers");
     const cookieStore = await cookies();
-    cookieStore.delete("auth_token");
+    cookieStore.delete("token");
     cookieStore.delete("user_email");
     revalidatePath("/");
 }
