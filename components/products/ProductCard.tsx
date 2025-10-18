@@ -49,9 +49,9 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <>
-      <article className="group bg-white dark:bg-licorice/40 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-licorice/10 dark:border-mindaro/20 hover:border-mindaro dark:hover:border-mindaro backdrop-blur-sm">
+      <article className="group bg-white dark:bg-licorice/60 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-licorice/15 dark:border-mindaro/30 hover:border-giants-orange/50 dark:hover:border-mindaro backdrop-blur-sm">
         <Link href={`/products/${product.slug}`} className="block">
-          <div className="relative h-48 sm:h-56 bg-beige dark:bg-licorice/60 overflow-hidden">
+          <div className="relative h-48 sm:h-56 bg-beige/50 dark:bg-black/40 overflow-hidden">
             <Image
               src={imageUrl}
               alt={product.name}
@@ -62,7 +62,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             />
             {product.category && (
               <div className="absolute top-3 left-3">
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/95 dark:bg-licorice/95 text-licorice dark:text-baby-powder backdrop-blur-sm border border-licorice/20 dark:border-mindaro/30">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/95 dark:bg-black/90 text-licorice dark:text-mindaro backdrop-blur-sm border border-licorice/30 dark:border-mindaro/50 shadow-lg">
                   {product.category.name}
                 </span>
               </div>
@@ -70,19 +70,19 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         </Link>
 
-        <div className="p-5">
+        <div className="p-5 bg-white dark:bg-licorice/80">
           <Link href={`/products/${product.slug}`}>
-            <h3 className="text-lg font-semibold text-licorice dark:text-baby-powder mb-2 line-clamp-2 group-hover:text-giants-orange transition-colors">
+            <h3 className="text-lg font-bold text-licorice dark:text-baby-powder mb-2 line-clamp-2 group-hover:text-giants-orange dark:group-hover:text-mindaro transition-colors">
               {product.name}
             </h3>
           </Link>
 
-          <p className="text-sm text-licorice/70 dark:text-baby-powder/70 mb-4 line-clamp-2">
+          <p className="text-sm text-licorice/80 dark:text-baby-powder/90 mb-4 line-clamp-2">
             {product.description}
           </p>
 
           <div className="flex items-center justify-between mb-4">
-            <span className="text-2xl font-bold text-giants-orange">
+            <span className="text-2xl font-bold text-giants-orange dark:text-mindaro">
               {formatPrice(product.price)}
             </span>
           </div>

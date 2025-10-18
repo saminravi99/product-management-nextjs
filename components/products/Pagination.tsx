@@ -63,23 +63,23 @@ export function Pagination({
     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4 px-2">
       {/* Items per page selector */}
       <div className="flex items-center gap-2">
-        <span className="text-sm text-licorice/70 dark:text-baby-powder/70">
+        <span className="text-sm font-medium text-licorice dark:text-baby-powder">
           Show:
         </span>
         <select
           value={itemsPerPage}
           onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
-          className="px-3 py-1.5 rounded-lg border-2 border-licorice/20 dark:border-mindaro/30 
-                   bg-white dark:bg-licorice/50 text-licorice dark:text-baby-powder
-                   text-sm focus:outline-none focus:ring-2 focus:ring-giants-orange
-                   hover:border-giants-orange transition-colors cursor-pointer"
+          className="px-3 py-2 rounded-lg border-2 border-licorice/30 dark:border-mindaro/40 
+                   bg-white dark:bg-licorice/60 text-licorice dark:text-baby-powder
+                   text-sm font-medium focus:outline-none focus:ring-2 focus:ring-giants-orange dark:focus:ring-mindaro
+                   hover:border-giants-orange dark:hover:border-mindaro transition-colors cursor-pointer shadow-sm"
         >
           <option value={10}>10</option>
           <option value={20}>20</option>
           <option value={50}>50</option>
           <option value={100}>100</option>
         </select>
-        <span className="text-sm text-licorice/70 dark:text-baby-powder/70">
+        <span className="text-sm font-medium text-licorice dark:text-baby-powder">
           items per page
         </span>
       </div>
@@ -87,7 +87,7 @@ export function Pagination({
       {/* Page info and navigation */}
       <div className="flex flex-col sm:flex-row items-center gap-4">
         {/* Results info */}
-        <span className="text-sm text-licorice/70 dark:text-baby-powder/70">
+        <span className="text-sm font-medium text-licorice dark:text-baby-powder">
           Showing {startItem}-{endItem} of {totalItems} products
         </span>
 

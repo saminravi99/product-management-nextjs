@@ -7,6 +7,20 @@
   --color-baby-powder: #f7f7f2;
   --color-beige: #e4e6c3;
   --color-giants-orange: #f05d23;
+
+  /* Light mode colors */
+  --light-bg: #f7f7f2;
+  --light-card-bg: #ffffff;
+  --light-text: #261c15;
+  --light-text-secondary: rgba(38, 28, 21, 0.7);
+  --light-border: rgba(38, 28, 21, 0.15);
+
+  /* Dark mode colors */
+  --dark-bg: #0f0d0b;
+  --dark-card-bg: rgba(38, 28, 21, 0.6);
+  --dark-text: #f7f7f2;
+  --dark-text-secondary: rgba(247, 247, 242, 0.8);
+  --dark-border: rgba(197, 216, 109, 0.3);
 }
 
 /* Smooth theme transitions */
@@ -16,8 +30,8 @@
 }
 
 body {
-  background-color: var(--color-baby-powder);
-  color: var(--color-licorice);
+  background-color: var(--light-bg);
+  color: var(--light-text);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -26,13 +40,13 @@ body {
 
 /* Dark mode styles */
 .dark body {
-  background-color: #1a1410;
-  color: var(--color-baby-powder);
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
 }
 
 .dark {
-  --card-bg: rgba(38, 28, 21, 0.6);
-  --card-border: rgba(197, 216, 109, 0.3);
+  --card-bg: var(--dark-card-bg);
+  --card-border: var(--dark-border);
   --hover-bg: rgba(197, 216, 109, 0.1);
 }
 

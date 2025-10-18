@@ -3,18 +3,25 @@
 import { CategoryFilter } from "@/components/products/CategoryFilter";
 import { Pagination } from "@/components/products/Pagination";
 import ProductCard from "@/components/products/ProductCard";
+import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
+import {
+  setCurrentPage,
+  setItemsPerPage,
+  setSelectedCategory,
+} from "@/lib/store/slices/productsSlice";
 import type { Product } from "@/types";
 import { Package } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 interface ProductsGridProps {
   products: Product[];
 }
 
 export function ProductsGrid({ products }: ProductsGridProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const dispatch = useAppDispatch();
+  const { selectedCategory, currentPage, itemsPerPage } = useAppSelector(
+    (state) => state.products
+  );
 
   // Get unique categories
   const categories = useMemo(() => {
@@ -48,13 +55,15 @@ export function ProductsGrid({ products }: ProductsGridProps) {
 
   // Reset to page 1 when category or items per page changes
   const handleCategoryChange = (category: string | null) => {
-    setSelectedCategory(category);
-    setCurrentPage(1);
+    dispatch(setSelectedCategory(category));
   };
 
   const handleItemsPerPageChange = (items: number) => {
-    setItemsPerPage(items);
-    setCurrentPage(1);
+    dispatch(setItemsPerPage(items));
+  };
+
+  const handlePageChange = (page: number) => {
+    dispatch(setCurrentPage(page));
   };
 
   if (filteredProducts.length === 0) {
@@ -107,7 +116,7 @@ export function ProductsGrid({ products }: ProductsGridProps) {
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
-            onPageChange={setCurrentPage}
+            onPageChange={handlePageChange}
             itemsPerPage={itemsPerPage}
             onItemsPerPageChange={handleItemsPerPageChange}
             totalItems={filteredProducts.length}
@@ -118,7 +127,7 @@ export function ProductsGrid({ products }: ProductsGridProps) {
         {totalPages === 1 && (
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center gap-2">
-              <span className="text-sm text-licorice/70 dark:text-baby-powder/70">
+              <span className="text-sm font-medium text-licorice dark:text-baby-powder">
                 Show:
               </span>
               <select
@@ -126,21 +135,21 @@ export function ProductsGrid({ products }: ProductsGridProps) {
                 onChange={(e) =>
                   handleItemsPerPageChange(Number(e.target.value))
                 }
-                className="px-3 py-1.5 rounded-lg border-2 border-licorice/20 dark:border-mindaro/30 
-                         bg-white dark:bg-licorice/50 text-licorice dark:text-baby-powder
-                         text-sm focus:outline-none focus:ring-2 focus:ring-giants-orange
-                         hover:border-giants-orange transition-colors cursor-pointer"
+                className="px-3 py-2 rounded-lg border-2 border-licorice/30 dark:border-mindaro/40 
+                         bg-white dark:bg-licorice/60 text-licorice dark:text-baby-powder
+                         text-sm font-medium focus:outline-none focus:ring-2 focus:ring-giants-orange dark:focus:ring-mindaro
+                         hover:border-giants-orange dark:hover:border-mindaro transition-colors cursor-pointer shadow-sm"
               >
                 <option value={10}>10</option>
                 <option value={20}>20</option>
                 <option value={50}>50</option>
                 <option value={100}>100</option>
               </select>
-              <span className="text-sm text-licorice/70 dark:text-baby-powder/70">
+              <span className="text-sm font-medium text-licorice dark:text-baby-powder">
                 items per page
               </span>
             </div>
-            <span className="text-sm text-licorice/70 dark:text-baby-powder/70">
+            <span className="text-sm font-medium text-licorice dark:text-baby-powder">
               Showing {filteredProducts.length} of {filteredProducts.length}{" "}
               products
             </span>

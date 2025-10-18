@@ -14,7 +14,7 @@ export default function ProductsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-baby-powder dark:bg-[#1a1410] flex flex-col transition-colors duration-300">
+    <div className="min-h-screen bg-baby-powder dark:bg-[#0f0d0b] flex flex-col transition-colors duration-300">
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />

@@ -22,7 +22,7 @@ export function CategoryFilter({
   const FilterContent = () => (
     <div className="space-y-4">
       {/* Header */}
-      <div className="flex items-center justify-between pb-4 border-b-2 border-licorice/10 dark:border-mindaro/20">
+      <div className="flex items-center justify-between pb-4 border-b-2 border-licorice/20 dark:border-mindaro/30">
         <h3 className="text-lg font-bold text-licorice dark:text-baby-powder">
           Categories
         </h3>
@@ -47,20 +47,20 @@ export function CategoryFilter({
           onCategoryChange(null);
           setIsMobileOpen(false);
         }}
-        className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 ${
+        className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 font-medium ${
           selectedCategory === null
-            ? "bg-giants-orange text-white shadow-md"
-            : "bg-white dark:bg-licorice/30 hover:bg-beige dark:hover:bg-mindaro/10 text-licorice dark:text-baby-powder"
+            ? "bg-giants-orange dark:bg-mindaro text-white dark:text-licorice shadow-md"
+            : "bg-white dark:bg-licorice/50 hover:bg-beige/80 dark:hover:bg-mindaro/20 text-licorice dark:text-baby-powder border-2 border-transparent hover:border-giants-orange/30 dark:hover:border-mindaro/50"
         }`}
       >
         <div className="flex items-center justify-between">
-          <span className="font-medium">All Products</span>
+          <span className="font-semibold">All Products</span>
           {productCounts.all && (
             <span
-              className={`text-sm px-2 py-1 rounded ${
+              className={`text-sm px-2.5 py-1 rounded font-medium ${
                 selectedCategory === null
-                  ? "bg-white/20"
-                  : "bg-licorice/10 dark:bg-baby-powder/10"
+                  ? "bg-white/30 dark:bg-black/30 text-white dark:text-licorice"
+                  : "bg-licorice/15 dark:bg-baby-powder/20 text-licorice dark:text-baby-powder"
               }`}
             >
               {productCounts.all}
@@ -78,20 +78,20 @@ export function CategoryFilter({
               onCategoryChange(category);
               setIsMobileOpen(false);
             }}
-            className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 ${
+            className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 font-medium ${
               selectedCategory === category
-                ? "bg-giants-orange text-white shadow-md"
-                : "bg-white dark:bg-licorice/30 hover:bg-beige dark:hover:bg-mindaro/10 text-licorice dark:text-baby-powder border-2 border-transparent hover:border-mindaro/30"
+                ? "bg-giants-orange dark:bg-mindaro text-white dark:text-licorice shadow-md"
+                : "bg-white dark:bg-licorice/50 hover:bg-beige/80 dark:hover:bg-mindaro/20 text-licorice dark:text-baby-powder border-2 border-licorice/20 dark:border-mindaro/30 hover:border-giants-orange/50 dark:hover:border-mindaro/60"
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="font-medium capitalize">{category}</span>
+              <span className="font-semibold capitalize">{category}</span>
               {productCounts[category] !== undefined && (
                 <span
-                  className={`text-sm px-2 py-1 rounded ${
+                  className={`text-sm px-2.5 py-1 rounded font-medium ${
                     selectedCategory === category
-                      ? "bg-white/20"
-                      : "bg-licorice/10 dark:bg-baby-powder/10"
+                      ? "bg-white/30 dark:bg-black/30 text-white dark:text-licorice"
+                      : "bg-licorice/15 dark:bg-baby-powder/20 text-licorice dark:text-baby-powder"
                   }`}
                 >
                   {productCounts[category]}
@@ -108,7 +108,7 @@ export function CategoryFilter({
     <>
       {/* Desktop Sidebar */}
       <div className="hidden lg:block w-64 flex-shrink-0">
-        <div className="sticky top-20 bg-baby-powder dark:bg-licorice/30 p-6 rounded-xl border-2 border-licorice/10 dark:border-mindaro/20 shadow-lg">
+        <div className="sticky top-20 bg-white dark:bg-licorice/70 p-6 rounded-xl border-2 border-licorice/20 dark:border-mindaro/30 shadow-xl backdrop-blur-sm">
           <FilterContent />
         </div>
       </div>
