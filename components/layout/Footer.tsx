@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-licorice text-baby-powder border-t-2 border-mindaro">
+    <footer className="bg-licorice dark:bg-[#1a1612] text-baby-powder border-t-2 border-mindaro dark:border-giants-orange transition-colors">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
@@ -11,18 +11,20 @@ export default function Footer() {
               <Package className="w-8 h-8 text-giants-orange" />
               <span className="text-xl font-bold">ProductHub</span>
             </div>
-            <p className="text-baby-powder/70 text-sm">
+            <p className="text-baby-powder/70 dark:text-baby-powder/60 text-sm">
               Modern product management solution for businesses of all sizes.
             </p>
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-mindaro">Product</h3>
+            <h3 className="font-semibold text-lg mb-4 text-mindaro dark:text-giants-orange">
+              Product
+            </h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   href="/products"
-                  className="text-baby-powder/70 hover:text-giants-orange transition-colors"
+                  className="text-baby-powder/70 dark:text-baby-powder/60 hover:text-giants-orange dark:hover:text-mindaro transition-colors"
                 >
                   All Products
                 </Link>
@@ -30,7 +32,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/products/create"
-                  className="text-baby-powder/70 hover:text-giants-orange transition-colors"
+                  className="text-baby-powder/70 dark:text-baby-powder/60 hover:text-giants-orange dark:hover:text-mindaro transition-colors"
                 >
                   Add Product
                 </Link>
@@ -39,14 +41,14 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-mindaro">
+            <h3 className="font-semibold text-lg mb-4 text-mindaro dark:text-giants-orange">
               Resources
             </h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
                   href="#"
-                  className="text-baby-powder/70 hover:text-giants-orange transition-colors"
+                  className="text-baby-powder/70 dark:text-baby-powder/60 hover:text-giants-orange dark:hover:text-mindaro transition-colors"
                 >
                   Documentation
                 </a>
@@ -54,7 +56,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-baby-powder/70 hover:text-giants-orange transition-colors"
+                  className="text-baby-powder/70 dark:text-baby-powder/60 hover:text-giants-orange dark:hover:text-mindaro transition-colors"
                 >
                   API Reference
                 </a>
@@ -62,7 +64,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-baby-powder/70 hover:text-giants-orange transition-colors"
+                  className="text-baby-powder/70 dark:text-baby-powder/60 hover:text-giants-orange dark:hover:text-mindaro transition-colors"
                 >
                   Support
                 </a>
@@ -71,25 +73,27 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-mindaro">Connect</h3>
+            <h3 className="font-semibold text-lg mb-4 text-mindaro dark:text-giants-orange">
+              Connect
+            </h3>
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="text-baby-powder/70 hover:text-giants-orange transition-colors"
+                className="text-baby-powder/70 dark:text-baby-powder/60 hover:text-giants-orange dark:hover:text-mindaro transition-colors"
                 aria-label="GitHub"
               >
                 <Github className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="text-baby-powder/70 hover:text-giants-orange transition-colors"
+                className="text-baby-powder/70 dark:text-baby-powder/60 hover:text-giants-orange dark:hover:text-mindaro transition-colors"
                 aria-label="Twitter"
               >
                 <Twitter className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="text-baby-powder/70 hover:text-giants-orange transition-colors"
+                className="text-baby-powder/70 dark:text-baby-powder/60 hover:text-giants-orange dark:hover:text-mindaro transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
@@ -98,7 +102,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-baby-powder/20 mt-8 pt-8 text-center text-sm text-baby-powder/70">
+        <div className="border-t border-baby-powder/20 dark:border-baby-powder/10 mt-8 pt-8 text-center text-sm text-baby-powder/70 dark:text-baby-powder/60">
           <p>
             © 2025 ProductHub. All rights reserved. Built with Next.js and
             Tailwind CSS.

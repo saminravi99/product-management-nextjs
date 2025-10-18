@@ -32,7 +32,7 @@ export default function LoginForm() {
 
     try {
       const response = await authenticateUser(email);
-      
+
       if (response.error) {
         setError(response.error);
         return;
@@ -51,8 +51,10 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-licorice mb-2">Welcome Back</h1>
-        <p className="text-licorice/70">
+        <h1 className="text-3xl font-bold text-licorice dark:text-baby-powder">
+          Welcome Back
+        </h1>
+        <p className="text-licorice/70 dark:text-baby-powder/70">
           Enter your email to access the product management system
         </p>
       </div>
@@ -69,7 +71,7 @@ export default function LoginForm() {
           autoFocus
         />
         {error && (
-          <p className="text-sm text-red-600">{error}</p>
+          <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
         )}
       </div>
 
@@ -83,7 +85,7 @@ export default function LoginForm() {
         Sign In
       </Button>
 
-      <p className="text-xs text-center text-licorice/50">
+      <p className="text-xs text-center text-licorice/50 dark:text-baby-powder/50">
         Use the same email you provided in your job application
       </p>
     </form>

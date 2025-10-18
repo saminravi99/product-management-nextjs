@@ -1,5 +1,6 @@
 import LoginForm from "@/components/auth/LoginForm";
 import Footer from "@/components/layout/Footer";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Package } from "lucide-react";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
@@ -11,7 +12,6 @@ export const metadata: Metadata = {
 };
 
 export default async function LoginPage() {
-  // Check if user is already logged in
   const cookieStore = await cookies();
   const token = cookieStore.get("token");
 
@@ -21,23 +21,22 @@ export default async function LoginPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="flex-1 flex items-center justify-center p-4 bg-gradient-to-br from-beige via-baby-powder to-mindaro">
+      <div className="absolute top-4 right-4 z-10">
+        <ThemeToggle />
+      </div>
+
+      <div className="flex-1 flex items-center justify-center p-4 bg-gradient-to-br from-beige via-baby-powder to-mindaro dark:from-[#1a1612] dark:via-[#0f0d0b] dark:to-licorice transition-colors">
         <div className="w-full max-w-md">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 border-2 border-licorice">
+          <div className="bg-white dark:bg-[#1a1612] rounded-2xl shadow-2xl p-8 border-2 border-licorice dark:border-mindaro transition-colors">
             <div className="flex justify-center mb-8">
-              <div className="p-4 bg-giants-orange rounded-full">
-                <Package className="w-12 h-12 text-white" />
+              <div className="p-4 bg-giants-orange dark:bg-mindaro rounded-full transition-colors">
+                <Package className="w-12 h-12 text-white dark:text-licorice" />
               </div>
             </div>
             <LoginForm />
           </div>
-
-          <p className="text-center mt-6 text-sm text-licorice/70">
-            © 2025 ProductHub. All rights reserved.
-          </p>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
