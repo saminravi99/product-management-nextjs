@@ -1,55 +1,24 @@
+import * as React from "react";
 import { cn } from "@/lib/utils";
-import { InputHTMLAttributes, forwardRef } from "react";
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  error?: string;
-  helperText?: string;
-}
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, label, error, helperText, id, ...props }, ref) => {
-    const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
-
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, ...props }, ref) => {
     return (
-      <div className="w-full">
-        {label && (
-          <label
-            htmlFor={inputId}
-            className="block text-sm font-medium text-licorice mb-1.5"
-          >
-            {label}
-          </label>
+      <input
+        type={type}
+        className={cn(
+          "flex h-10 w-full rounded-md border-2 border-[#261c15] bg-white px-3 py-2 text-sm text-[#261c15] ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#261c15]/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f05d23] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+          className
         )}
-        <input
-          ref={ref}
-          id={inputId}
-          className={cn(
-            "w-full px-4 py-2.5 rounded-lg border bg-white text-licorice",
-            "focus:outline-none focus:ring-2 focus:ring-giants-orange focus:border-transparent",
-            "transition-all duration-200",
-            "placeholder:text-gray-400",
-            error
-              ? "border-red-500 focus:ring-red-500"
-              : "border-gray-300 hover:border-gray-400",
-            props.disabled && "bg-gray-100 cursor-not-allowed",
-            className
-          )}
-          {...props}
-        />
-        {error && (
-          <p className="mt-1.5 text-sm text-red-600" role="alert">
-            {error}
-          </p>
-        )}
-        {helperText && !error && (
-          <p className="mt-1.5 text-sm text-gray-500">{helperText}</p>
-        )}
-      </div>
+        ref={ref}
+        {...props}
+      />
     );
   }
 );
-
 Input.displayName = "Input";
 
-export default Input;
+export { Input };
