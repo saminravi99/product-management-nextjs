@@ -1,8 +1,7 @@
-import { ProductsGrid } from "@/components/products/ProductsGrid";
+import ProductsList from "@/components/products/ProductsList";
 import ProductsSearch from "@/components/products/ProductsSearch";
 import { Button } from "@/components/ui/button";
-import { fetchProducts } from "@/lib/actions/products";
-import { Package, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
@@ -12,8 +11,6 @@ export const metadata: Metadata = {
   title: "Products - ProductHub",
   description: "Browse and manage your product catalog",
 };
-
-export const revalidate = 60;
 
 interface ProductsPageProps {
   searchParams: Promise<{ search?: string }>;
@@ -32,10 +29,6 @@ export default async function ProductsPage({
   const params = await searchParams;
   const searchQuery = params.search || "";
 
-  const { products, error } = await fetchProducts({
-    search: searchQuery,
-  });
-
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
@@ -52,44 +45,14 @@ export default async function ProductsPage({
           <ProductsSearch initialValue={searchQuery} />
         </div>
         <Link href="/products/create">
-          <Button size="lg" className="shadow-lg">
+          <Button size="lg" className="shadow-lg w-full sm:w-auto">
             <Plus className="w-5 h-5 mr-2" />
             Create Product
           </Button>
         </Link>
       </div>
 
-      {error && (
-        <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-lg p-6 text-center mb-8">
-          <p className="text-red-600 dark:text-red-400 font-medium mb-2">
-            Error Loading Products
-          </p>
-          <p className="text-red-500 dark:text-red-300 text-sm">{error}</p>
-        </div>
-      )}
-
-      {!error && products.length === 0 && (
-        <div className="bg-white dark:bg-licorice/30 rounded-xl shadow-lg p-12 text-center border-2 border-licorice/10 dark:border-mindaro/20">
-          <div className="flex justify-center mb-4">
-            <Package className="w-16 h-16 text-licorice/40 dark:text-baby-powder/40" />
-          </div>
-          <h3 className="text-xl font-semibold text-licorice dark:text-baby-powder mb-2">
-            {searchQuery ? "No products found" : "No products yet"}
-          </h3>
-          <p className="text-licorice/70 dark:text-baby-powder/70 mb-6">
-            {searchQuery
-              ? `No products match "${searchQuery}". Try a different search.`
-              : "Get started by creating your first product."}
-          </p>
-          {!searchQuery && (
-            <Link href="/products/create">
-              <Button>Create Your First Product</Button>
-            </Link>
-          )}
-        </div>
-      )}
-
-      {!error && products.length > 0 && <ProductsGrid products={products} />}
+      <ProductsList searchQuery={searchQuery} />
     </div>
   );
 }
