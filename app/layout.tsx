@@ -1,4 +1,5 @@
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeApplier } from "@/components/theme-applier";
+import { StoreProvider } from "@/lib/store/StoreProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -65,14 +66,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} antialiased bg-baby-powder dark:bg-[#0f0d0b] text-licorice dark:text-baby-powder transition-colors duration-300 min-h-screen`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          storageKey="producthub-theme"
-        >
+        <StoreProvider>
+          <ThemeApplier />
           {children}
-        </ThemeProvider>
+        </StoreProvider>
       </body>
     </html>
   );
