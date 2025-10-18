@@ -1,5 +1,5 @@
-import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
 import ProductCard from "@/components/products/ProductCard";
 import ProductsSearch from "@/components/products/ProductsSearch";
 import { Button } from "@/components/ui/button";

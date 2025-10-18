@@ -1,28 +1,38 @@
 import Header from "@/components/layout/Header";
 import ProductForm from "@/components/products/ProductForm";
 import { Button } from "@/components/ui/button";
-import { fetchCategories, fetchProductBySlug, updateProduct } from "@/lib/actions/products";
+import {
+  fetchCategories,
+  fetchProductBySlug,
+  updateProduct,
+} from "@/lib/actions/products";
 import type { ProductFormData } from "@/types";
 import { Package } from "lucide-react";
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
 
 interface EditProductPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ params }: EditProductPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: EditProductPageProps): Promise<Metadata> {
   const { slug } = await params;
   const product = await fetchProductBySlug(slug);
 
   return {
-    title: product ? `Edit ${product.name} - ProductHub` : "Edit Product - ProductHub",
+    title: product
+      ? `Edit ${product.name} - ProductHub`
+      : "Edit Product - ProductHub",
   };
 }
 
-export default async function EditProductPage({ params }: EditProductPageProps) {
+export default async function EditProductPage({
+  params,
+}: EditProductPageProps) {
   const cookieStore = await cookies();
   const token = cookieStore.get("token");
 
@@ -80,7 +90,11 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
         <div className="bg-white rounded-xl shadow-md p-6 sm:p-8 border-2 border-[#261c15]">
           <ProductForm
             initialData={{
-              ...product,
+              name: product.name,
+              description: product.description,
+              price: product.price,
+              images: product.images,
+              categoryId: product.category.id,
               id: product.id,
             }}
             onSubmit={handleSubmit}
