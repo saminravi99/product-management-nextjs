@@ -1,10 +1,11 @@
+import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import ProductForm from "@/components/products/ProductForm";
 import { createProduct, fetchCategories } from "@/lib/actions/products";
 import type { ProductFormData } from "@/types";
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Create Product - ProductHub",
@@ -27,10 +28,10 @@ export default async function CreateProductPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f7f7f2]">
+    <div className="min-h-screen bg-[#f7f7f2] flex flex-col">
       <Header />
 
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-3xl">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-3xl flex-1">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-[#261c15] mb-2">
             Create New Product
@@ -45,6 +46,8 @@ export default async function CreateProductPage() {
           <ProductForm onSubmit={handleSubmit} categories={categories} />
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import ProductForm from "@/components/products/ProductForm";
 import { Button } from "@/components/ui/button";
@@ -48,9 +49,9 @@ export default async function EditProductPage({
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-[#f7f7f2]">
+      <div className="min-h-screen bg-[#f7f7f2] flex flex-col">
         <Header />
-        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
           <div className="bg-white rounded-xl shadow-md p-12 text-center border-2 border-[#261c15]">
             <Package className="w-16 h-16 text-[#261c15]/40 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-[#261c15] mb-2">
@@ -64,6 +65,7 @@ export default async function EditProductPage({
             </Button>
           </div>
         </main>
+        <Footer />
       </div>
     );
   }
@@ -74,10 +76,10 @@ export default async function EditProductPage({
   };
 
   return (
-    <div className="min-h-screen bg-[#f7f7f2]">
+    <div className="min-h-screen bg-[#f7f7f2] flex flex-col">
       <Header />
 
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-3xl">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-3xl flex-1">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-[#261c15] mb-2">
             Edit Product
@@ -103,6 +105,8 @@ export default async function EditProductPage({
           />
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }
