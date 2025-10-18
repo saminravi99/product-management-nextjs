@@ -1,5 +1,3 @@
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 import ProductForm from "@/components/products/ProductForm";
 import { Button } from "@/components/ui/button";
 import {
@@ -49,23 +47,19 @@ export default async function EditProductPage({
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-baby-powder flex flex-col">
-        <Header />
-        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
-          <div className="bg-white rounded-xl shadow-md p-12 text-center border-2 border-licorice">
-            <Package className="w-16 h-16 text-licorice/40 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-licorice mb-2">
-              Product Not Found
-            </h2>
-            <p className="text-licorice/70 mb-6">
-              The product you&apos;re trying to edit doesn&apos;t exist.
-            </p>
-            <Button asChild>
-              <Link href="/products">Back to Products</Link>
-            </Button>
-          </div>
-        </main>
-        <Footer />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="bg-white rounded-xl shadow-md p-12 text-center border-2 border-licorice">
+          <Package className="w-16 h-16 text-licorice/40 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-licorice mb-2">
+            Product Not Found
+          </h2>
+          <p className="text-licorice/70 mb-6">
+            The product you&apos;re trying to edit doesn&apos;t exist.
+          </p>
+          <Link href="/products">
+            <Button>Back to Products</Button>
+          </Link>
+        </div>
       </div>
     );
   }
@@ -76,20 +70,17 @@ export default async function EditProductPage({
   };
 
   return (
-    <div className="min-h-screen bg-baby-powder flex flex-col">
-      <Header />
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-3xl">
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold text-licorice mb-2">
+          Edit Product
+        </h1>
+        <p className="text-licorice/70">
+          Update product information. All fields marked with * are required.
+        </p>
+      </div>
 
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-3xl flex-1">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-licorice mb-2">
-            Edit Product
-          </h1>
-          <p className="text-licorice/70">
-            Update product information. All fields marked with * are required.
-          </p>
-        </div>
-
-        <div className="bg-white rounded-xl shadow-md p-6 sm:p-8 border-2 border-licorice">
+      <div className="bg-white rounded-xl shadow-md p-6 sm:p-8 border-2 border-licorice">
           <ProductForm
             initialData={{
               name: product.name,
@@ -100,13 +91,10 @@ export default async function EditProductPage({
               id: product.id,
             }}
             onSubmit={handleSubmit}
-            isEdit
-            categories={categories}
-          />
-        </div>
-      </main>
-
-      <Footer />
+          isEdit
+          categories={categories}
+        />
+      </div>
     </div>
   );
 }
