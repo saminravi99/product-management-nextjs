@@ -1,5 +1,5 @@
 import { productsApi } from "@/lib/api";
-import type { PaginationParams, Product, SearchParams, ProductFormData } from "@/types";
+import type { PaginationParams, Product, ProductFormData, SearchParams } from "@/types";
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 interface ProductsState {

@@ -1,8 +1,9 @@
 import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
-// Utility for conditional className joining
+// Utility for conditional className joining with tailwind-merge
 export function cn(...inputs: ClassValue[]) {
-    return clsx(inputs);
+    return twMerge(clsx(inputs));
 }
 
 // Format price to currency
@@ -56,12 +57,12 @@ export function isValidUrl(url: string): boolean {
 
 // Debounce function
 export function debounce<T extends (...args: never[]) => unknown>(
-  func: T,
-  wait: number
+    func: T,
+    wait: number
 ): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout;
-  return (...args: Parameters<T>) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
-  };
+    let timeout: NodeJS.Timeout;
+    return (...args: Parameters<T>) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func(...args), wait);
+    };
 }
