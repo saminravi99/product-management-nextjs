@@ -55,13 +55,13 @@ export function isValidUrl(url: string): boolean {
 }
 
 // Debounce function
-export function debounce<T extends (...args: any[]) => any>(
-    func: T,
-    wait: number
+export function debounce<T extends (...args: never[]) => unknown>(
+  func: T,
+  wait: number
 ): (...args: Parameters<T>) => void {
-    let timeout: NodeJS.Timeout;
-    return (...args: Parameters<T>) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func(...args), wait);
-    };
+  let timeout: NodeJS.Timeout;
+  return (...args: Parameters<T>) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
 }

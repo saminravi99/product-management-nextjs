@@ -1,14 +1,8 @@
 # ProductHub - Product Management SystemThis is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-
-
 A modern, enterprise-grade product management application built with Next.js 15, Redux Toolkit, and Tailwind CSS.## Getting Started
 
-
-
-## 🚀 FeaturesFirst, run the development server:
-
-
+## FeaturesFirst, run the development server:
 
 - **Authentication**: Secure JWT-based authentication```bash
 
@@ -54,11 +48,9 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 ## 📦 Installation- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-
-
 1. Clone the repository:You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-```bash
+````bash
 
 git clone <repository-url>## Deploy on Vercel
 
@@ -72,14 +64,16 @@ cd product-management
 
 ```bash
 npm install
-```
+````
 
 3. Create a `.env.local` file in the root directory:
+
 ```env
 NEXT_PUBLIC_API_URL=https://api.bitechx.com
 ```
 
 4. Run the development server:
+
 ```bash
 npm run dev
 ```
@@ -124,11 +118,13 @@ product-management/
 ## 🔑 Key Features
 
 ### Authentication
+
 - Email-based login with JWT tokens
 - Persistent authentication state with Redux
 - Protected routes with middleware
 
 ### Product Management
+
 - Create products with images, descriptions, and pricing
 - Edit existing products
 - Delete products with confirmation dialogs
@@ -136,12 +132,14 @@ product-management/
 - Category assignment
 
 ### Search & Filtering
+
 - Real-time product search by name
 - Debounced search input for performance
 - Filter products by category
 - Pagination for efficient data loading
 
 ### User Experience
+
 - Loading states and spinners
 - Error handling with user-friendly messages
 - Responsive design for all screen sizes
@@ -184,6 +182,7 @@ The application integrates with the BitechX API:
 ### Other Platforms
 
 The app can be deployed to any platform that supports Next.js:
+
 - Netlify
 - AWS Amplify
 - Railway

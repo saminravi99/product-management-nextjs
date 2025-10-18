@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Button from "@/components/ui/Button";
+import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -11,10 +11,11 @@ export default function NotFound() {
             Page Not Found
           </h2>
           <p className="text-gray-600 mb-8">
-            Sorry, the page you are looking for does not exist or has been moved.
+            Sorry, the page you are looking for does not exist or has been
+            moved.
           </p>
         </div>
-        
+
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/products">
             <Button variant="primary" size="lg">

@@ -1,5 +1,5 @@
 import { productsApi } from "@/lib/api";
-import type { PaginationParams, Product, SearchParams } from "@/types";
+import type { PaginationParams, Product, SearchParams, ProductFormData } from "@/types";
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 interface ProductsState {
@@ -51,7 +51,7 @@ export const searchProducts = createAsyncThunk(
 
 export const createProduct = createAsyncThunk(
     "products/createProduct",
-    async (data: any) => {
+    async (data: ProductFormData) => {
         const response = await productsApi.create(data);
         return response;
     }
@@ -59,13 +59,11 @@ export const createProduct = createAsyncThunk(
 
 export const updateProduct = createAsyncThunk(
     "products/updateProduct",
-    async ({ id, data }: { id: string; data: any }) => {
+    async ({ id, data }: { id: string; data: Partial<ProductFormData> }) => {
         const response = await productsApi.update(id, data);
         return response;
     }
-);
-
-export const deleteProduct = createAsyncThunk(
+); export const deleteProduct = createAsyncThunk(
     "products/deleteProduct",
     async (id: string) => {
         await productsApi.delete(id);
