@@ -1,13 +1,14 @@
-"use client";
+'use client';
 
-import { ProductsGrid } from "@/components/products/ProductsGrid";
-import ProductsGridSkeleton from "@/components/products/ProductsGridSkeleton";
-import { Button } from "@/components/ui/button";
-import { fetchProducts } from "@/lib/actions/products";
-import type { Product } from "@/types";
-import { Package } from "lucide-react";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import CategoryFilterSkeleton from '@/components/products/CategoryFilterSkeleton';
+import { ProductsGrid } from '@/components/products/ProductsGrid';
+import ProductsGridSkeleton from '@/components/products/ProductsGridSkeleton';
+import { Button } from '@/components/ui/button';
+import { fetchProducts } from '@/lib/actions/products';
+import type { Product } from '@/types';
+import { Package } from 'lucide-react';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 interface ProductsListProps {
   searchQuery: string;
@@ -41,7 +42,14 @@ export default function ProductsList({ searchQuery }: ProductsListProps) {
   }, [searchQuery]);
 
   if (isLoading) {
-    return <ProductsGridSkeleton count={8} />;
+    return (
+      <div className="flex flex-col lg:flex-row gap-6">
+        <CategoryFilterSkeleton />
+        <div className="flex-1">
+          <ProductsGridSkeleton count={8} />
+        </div>
+      </div>
+    );
   }
 
   if (error) {
