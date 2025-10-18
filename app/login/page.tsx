@@ -1,24 +1,14 @@
 import LoginForm from "@/components/auth/LoginForm";
-import Footer from "@/components/layout/Footer";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Package } from "lucide-react";
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Login - ProductHub",
   description: "Sign in to access the ProductHub product management system",
 };
 
-export default async function LoginPage() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token");
-
-  if (token) {
-    redirect("/products");
-  }
-
+export default function LoginPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <div className="absolute top-4 right-4 z-10">

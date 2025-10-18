@@ -8,9 +8,7 @@ import {
 import type { ProductFormData } from "@/types";
 import { Package } from "lucide-react";
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 interface EditProductPageProps {
   params: Promise<{ slug: string }>;
@@ -32,13 +30,6 @@ export async function generateMetadata({
 export default async function EditProductPage({
   params,
 }: EditProductPageProps) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token");
-
-  if (!token) {
-    redirect("/login");
-  }
-
   const { slug } = await params;
   const [product, categories] = await Promise.all([
     fetchProductBySlug(slug),

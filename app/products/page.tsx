@@ -3,9 +3,7 @@ import ProductsSearch from "@/components/products/ProductsSearch";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Products - ProductHub",
@@ -19,13 +17,6 @@ interface ProductsPageProps {
 export default async function ProductsPage({
   searchParams,
 }: ProductsPageProps) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token");
-
-  if (!token) {
-    redirect("/login");
-  }
-
   const params = await searchParams;
   const searchQuery = params.search || "";
 

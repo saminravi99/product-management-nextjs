@@ -3,9 +3,7 @@ import { Button } from "@/components/ui/button";
 import { fetchProductBySlug } from "@/lib/actions/products";
 import { Package } from "lucide-react";
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 interface ProductDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -39,13 +37,6 @@ export async function generateMetadata({
 export default async function ProductDetailPage({
   params,
 }: ProductDetailPageProps) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token");
-
-  if (!token) {
-    redirect("/login");
-  }
-
   const { slug } = await params;
   const product = await fetchProductBySlug(slug);
 

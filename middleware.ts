@@ -3,12 +3,21 @@ import { NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
+    const token = request.cookies.get('token');
 
     const publicPaths = ['/login'];
     const isPublicPath = publicPaths.some((path) => pathname.startsWith(path));
 
-    if (pathname === '/' && !isPublicPath) {
+    if (pathname === '/') {
         return NextResponse.redirect(new URL('/login', request.url));
+    }
+
+    if (!token && !isPublicPath) {
+        return NextResponse.redirect(new URL('/login', request.url));
+    }
+
+    if (token && pathname === '/login') {
+        return NextResponse.redirect(new URL('/products', request.url));
     }
 
     return NextResponse.next();

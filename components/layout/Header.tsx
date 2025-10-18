@@ -92,11 +92,13 @@ export default function Header() {
           isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={closeMobileMenu}
+        style={{ willChange: "opacity" }}
       />
       <div
         className={`fixed top-0 right-0 h-screen w-80 max-w-[85vw] bg-white dark:bg-[#1a1614] border-l-2 border-licorice/20 dark:border-mindaro/40 shadow-2xl z-[70] md:hidden overflow-y-auto transition-transform duration-300 ease-in-out ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
+        style={{ willChange: "transform" }}
       >
         <div className="p-6">
           <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-licorice/20 dark:border-mindaro/40">

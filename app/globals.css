@@ -26,9 +26,9 @@
   --dark-border: rgba(197, 216, 109, 0.3);
 }
 
-/* Smooth theme transitions */
+/* Smooth theme transitions - exclude transform for menus */
 body,
-body *:not(html) {
+body *:not(html):not([class*="translate-x"]) {
   transition: background-color 0.3s ease, color 0.3s ease,
     border-color 0.3s ease;
 }

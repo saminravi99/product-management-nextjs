@@ -2,8 +2,6 @@ import ProductForm from "@/components/products/ProductForm";
 import { createProduct, fetchCategories } from "@/lib/actions/products";
 import type { ProductFormData } from "@/types";
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Create Product - ProductHub",
@@ -11,13 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function CreateProductPage() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token");
-
-  if (!token) {
-    redirect("/login");
-  }
-
   const categories = await fetchCategories();
 
   const handleSubmit = async (data: ProductFormData) => {
