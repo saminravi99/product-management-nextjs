@@ -70,7 +70,7 @@ export function Pagination({
                    text-sm font-bold focus:outline-none focus:ring-2 focus:ring-giants-orange dark:focus:ring-mindaro
                    hover:border-giants-orange dark:hover:border-mindaro transition-colors cursor-pointer shadow-md"
         >
-          <option value={10}>10</option>
+          <option value={12}>12</option>
           <option value={20}>20</option>
           <option value={50}>50</option>
           <option value={100}>100</option>

@@ -18,7 +18,7 @@ export function ProductsGrid({ products }: ProductsGridProps) {
 
   const selectedCategory = searchParams.get("category") || null;
   const currentPage = parseInt(searchParams.get("page") || "1");
-  const itemsPerPage = parseInt(searchParams.get("limit") || "10");
+  const itemsPerPage = parseInt(searchParams.get("limit") || "12");
 
   const updateURL = (params: Record<string, string | null>) => {
     const newParams = new URLSearchParams(searchParams.toString());
@@ -145,7 +145,7 @@ export function ProductsGrid({ products }: ProductsGridProps) {
                          text-sm font-medium focus:outline-none focus:ring-2 focus:ring-giants-orange dark:focus:ring-mindaro
                          hover:border-giants-orange dark:hover:border-mindaro transition-colors cursor-pointer shadow-sm"
               >
-                <option value={10}>10</option>
+                <option value={12}>12</option>
                 <option value={20}>20</option>
                 <option value={50}>50</option>
                 <option value={100}>100</option>
