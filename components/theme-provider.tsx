@@ -11,7 +11,8 @@ export function ThemeProvider({
     <NextThemesProvider
       attribute="class"
       defaultTheme="light"
-      enableSystem
+      enableSystem={false}
+      storageKey="producthub-theme"
       disableTransitionOnChange={false}
       {...props}
     >
