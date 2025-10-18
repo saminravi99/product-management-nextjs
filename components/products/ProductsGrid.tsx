@@ -3,14 +3,9 @@
 import { CategoryFilter } from "@/components/products/CategoryFilter";
 import { Pagination } from "@/components/products/Pagination";
 import ProductCard from "@/components/products/ProductCard";
-import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
-import {
-  setCurrentPage,
-  setItemsPerPage,
-  setSelectedCategory,
-} from "@/lib/store/slices/productsSlice";
 import type { Product } from "@/types";
 import { Package } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 
 interface ProductsGridProps {
@@ -18,10 +13,28 @@ interface ProductsGridProps {
 }
 
 export function ProductsGrid({ products }: ProductsGridProps) {
-  const dispatch = useAppDispatch();
-  const { selectedCategory, currentPage, itemsPerPage } = useAppSelector(
-    (state) => state.products
-  );
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Get state from URL query params
+  const selectedCategory = searchParams.get("category") || null;
+  const currentPage = parseInt(searchParams.get("page") || "1");
+  const itemsPerPage = parseInt(searchParams.get("limit") || "10");
+
+  // Update URL with new params
+  const updateURL = (params: Record<string, string | null>) => {
+    const newParams = new URLSearchParams(searchParams.toString());
+
+    Object.entries(params).forEach(([key, value]) => {
+      if (value === null || value === "") {
+        newParams.delete(key);
+      } else {
+        newParams.set(key, value);
+      }
+    });
+
+    router.push(`?${newParams.toString()}`, { scroll: false });
+  };
 
   // Get unique categories
   const categories = useMemo(() => {
@@ -53,17 +66,17 @@ export function ProductsGrid({ products }: ProductsGridProps) {
 
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
-  // Reset to page 1 when category or items per page changes
+  // Handle filter/pagination changes via URL params
   const handleCategoryChange = (category: string | null) => {
-    dispatch(setSelectedCategory(category));
+    updateURL({ category, page: "1" }); // Reset to page 1 on category change
   };
 
   const handleItemsPerPageChange = (items: number) => {
-    dispatch(setItemsPerPage(items));
+    updateURL({ limit: items.toString(), page: "1" }); // Reset to page 1 on limit change
   };
 
   const handlePageChange = (page: number) => {
-    dispatch(setCurrentPage(page));
+    updateURL({ page: page.toString() });
   };
 
   if (filteredProducts.length === 0) {
@@ -95,17 +108,19 @@ export function ProductsGrid({ products }: ProductsGridProps) {
   }
 
   return (
-    <div className="flex gap-6">
-      <CategoryFilter
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onCategoryChange={handleCategoryChange}
-        productCounts={productCounts}
-      />
+    <div className="flex flex-col lg:flex-row gap-6">
+      <div className="lg:w-80 flex-shrink-0">
+        <CategoryFilter
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onCategoryChange={handleCategoryChange}
+          productCounts={productCounts}
+        />
+      </div>
 
       <div className="flex-1 min-w-0">
         {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 mb-6">
           {paginatedProducts.map((product: Product) => (
             <ProductCard key={product.id} product={product} />
           ))}

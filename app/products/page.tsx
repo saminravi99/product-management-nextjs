@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   description: "Browse and manage your product catalog",
 };
 
+// Enable ISR with revalidation every 60 seconds
+export const revalidate = 60;
+
 interface ProductsPageProps {
   searchParams: Promise<{ search?: string }>;
 }
@@ -38,10 +41,10 @@ export default async function ProductsPage({
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-licorice dark:text-baby-powder mb-2">
+        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-giants-orange to-giants-orange/70 dark:from-mindaro dark:to-mindaro/70 bg-clip-text text-transparent">
           Products
         </h1>
-        <p className="text-licorice/70 dark:text-baby-powder/70">
+        <p className="text-licorice/70 dark:text-baby-powder/80 text-lg">
           Browse, search, and manage your product catalog
         </p>
       </div>
@@ -51,7 +54,7 @@ export default async function ProductsPage({
           <ProductsSearch initialValue={searchQuery} />
         </div>
         <Link href="/products/create">
-          <Button>
+          <Button size="lg" className="shadow-lg">
             <Plus className="w-5 h-5 mr-2" />
             Create Product
           </Button>

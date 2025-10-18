@@ -63,23 +63,23 @@ export function Pagination({
     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4 px-2">
       {/* Items per page selector */}
       <div className="flex items-center gap-2">
-        <span className="text-sm font-medium text-licorice dark:text-baby-powder">
+        <span className="text-sm font-semibold text-licorice dark:text-baby-powder">
           Show:
         </span>
         <select
           value={itemsPerPage}
           onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
-          className="px-3 py-2 rounded-lg border-2 border-licorice/30 dark:border-mindaro/40 
-                   bg-white dark:bg-licorice/60 text-licorice dark:text-baby-powder
-                   text-sm font-medium focus:outline-none focus:ring-2 focus:ring-giants-orange dark:focus:ring-mindaro
-                   hover:border-giants-orange dark:hover:border-mindaro transition-colors cursor-pointer shadow-sm"
+          className="px-3 py-2 rounded-lg border-2 border-licorice/30 dark:border-mindaro/50 
+                   bg-white dark:bg-[#2a2320] text-licorice dark:text-baby-powder
+                   text-sm font-bold focus:outline-none focus:ring-2 focus:ring-giants-orange dark:focus:ring-mindaro
+                   hover:border-giants-orange dark:hover:border-mindaro transition-colors cursor-pointer shadow-md"
         >
           <option value={10}>10</option>
           <option value={20}>20</option>
           <option value={50}>50</option>
           <option value={100}>100</option>
         </select>
-        <span className="text-sm font-medium text-licorice dark:text-baby-powder">
+        <span className="text-sm font-semibold text-licorice dark:text-baby-powder">
           items per page
         </span>
       </div>
@@ -87,7 +87,7 @@ export function Pagination({
       {/* Page info and navigation */}
       <div className="flex flex-col sm:flex-row items-center gap-4">
         {/* Results info */}
-        <span className="text-sm font-medium text-licorice dark:text-baby-powder">
+        <span className="text-sm font-semibold text-licorice dark:text-baby-powder">
           Showing {startItem}-{endItem} of {totalItems} products
         </span>
 
@@ -110,14 +110,14 @@ export function Pagination({
                 variant={currentPage === page ? "default" : "outline"}
                 size="sm"
                 onClick={() => onPageChange(page)}
-                className="h-9 w-9 p-0"
+                className="h-9 w-9 p-0 font-bold"
               >
                 {page}
               </Button>
             ) : (
               <span
                 key={index}
-                className="h-9 w-9 flex items-center justify-center text-licorice/50 dark:text-baby-powder/50"
+                className="h-9 w-9 flex items-center justify-center text-licorice/40 dark:text-baby-powder/40 font-bold"
               >
                 {page}
               </span>

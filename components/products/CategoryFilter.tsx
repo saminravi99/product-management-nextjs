@@ -47,20 +47,20 @@ export function CategoryFilter({
           onCategoryChange(null);
           setIsMobileOpen(false);
         }}
-        className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 font-medium ${
+        className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${
           selectedCategory === null
-            ? "bg-giants-orange dark:bg-mindaro text-white dark:text-licorice shadow-md"
-            : "bg-white dark:bg-licorice/50 hover:bg-beige/80 dark:hover:bg-mindaro/20 text-licorice dark:text-baby-powder border-2 border-transparent hover:border-giants-orange/30 dark:hover:border-mindaro/50"
+            ? "bg-giants-orange dark:bg-mindaro text-white dark:text-licorice shadow-lg border-2 border-giants-orange dark:border-mindaro"
+            : "bg-white dark:bg-[#1a1614] hover:bg-giants-orange/10 dark:hover:bg-mindaro/20 text-licorice dark:text-baby-powder border-2 border-licorice/20 dark:border-mindaro/40 hover:border-giants-orange dark:hover:border-mindaro shadow-sm"
         }`}
       >
         <div className="flex items-center justify-between">
-          <span className="font-semibold">All Products</span>
+          <span className="font-bold">All Products</span>
           {productCounts.all && (
             <span
-              className={`text-sm px-2.5 py-1 rounded font-medium ${
+              className={`text-sm px-2.5 py-1 rounded-md font-bold ${
                 selectedCategory === null
-                  ? "bg-white/30 dark:bg-black/30 text-white dark:text-licorice"
-                  : "bg-licorice/15 dark:bg-baby-powder/20 text-licorice dark:text-baby-powder"
+                  ? "bg-white/30 dark:bg-licorice/30 text-white dark:text-licorice"
+                  : "bg-giants-orange/15 dark:bg-mindaro/20 text-giants-orange dark:text-mindaro"
               }`}
             >
               {productCounts.all}
@@ -78,20 +78,20 @@ export function CategoryFilter({
               onCategoryChange(category);
               setIsMobileOpen(false);
             }}
-            className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 font-medium ${
+            className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${
               selectedCategory === category
-                ? "bg-giants-orange dark:bg-mindaro text-white dark:text-licorice shadow-md"
-                : "bg-white dark:bg-licorice/50 hover:bg-beige/80 dark:hover:bg-mindaro/20 text-licorice dark:text-baby-powder border-2 border-licorice/20 dark:border-mindaro/30 hover:border-giants-orange/50 dark:hover:border-mindaro/60"
+                ? "bg-giants-orange dark:bg-mindaro text-white dark:text-licorice shadow-lg border-2 border-giants-orange dark:border-mindaro"
+                : "bg-white dark:bg-[#1a1614] hover:bg-giants-orange/10 dark:hover:bg-mindaro/20 text-licorice dark:text-baby-powder border-2 border-licorice/20 dark:border-mindaro/40 hover:border-giants-orange dark:hover:border-mindaro shadow-sm"
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="font-semibold capitalize">{category}</span>
+              <span className="font-bold capitalize">{category}</span>
               {productCounts[category] !== undefined && (
                 <span
-                  className={`text-sm px-2.5 py-1 rounded font-medium ${
+                  className={`text-sm px-2.5 py-1 rounded-md font-bold ${
                     selectedCategory === category
-                      ? "bg-white/30 dark:bg-black/30 text-white dark:text-licorice"
-                      : "bg-licorice/15 dark:bg-baby-powder/20 text-licorice dark:text-baby-powder"
+                      ? "bg-white/30 dark:bg-licorice/30 text-white dark:text-licorice"
+                      : "bg-giants-orange/15 dark:bg-mindaro/20 text-giants-orange dark:text-mindaro"
                   }`}
                 >
                   {productCounts[category]}
@@ -107,8 +107,8 @@ export function CategoryFilter({
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className="hidden lg:block w-64 flex-shrink-0">
-        <div className="sticky top-20 bg-white dark:bg-licorice/70 p-6 rounded-xl border-2 border-licorice/20 dark:border-mindaro/30 shadow-xl backdrop-blur-sm">
+      <div className="hidden lg:block flex-shrink-0">
+        <div className="sticky top-20 bg-white dark:bg-[#1a1614] p-6 rounded-xl border-2 border-licorice/20 dark:border-mindaro/40 shadow-xl dark:shadow-mindaro/20 backdrop-blur-sm">
           <FilterContent />
         </div>
       </div>
