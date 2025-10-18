@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://producthub.com",
+    url: "https://product-management-indol-seven.vercel.app",
     title: "ProductHub - Product Management System",
     description: "Modern product management made simple",
     siteName: "ProductHub",

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://producthub.com/sitemap.xml
+Sitemap: https://product-management-indol-seven.vercel.app/sitemap.xml
