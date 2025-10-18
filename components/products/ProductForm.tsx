@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { isValidUrl } from "@/lib/utils";
+import { logger } from "@/lib/utils/logger";
 import type { Category, ProductFormData } from "@/types";
 import { Plus, X } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -102,7 +103,7 @@ export default function ProductForm({
       router.push("/products");
       router.refresh();
     } catch (error) {
-      console.error("Form submission error:", error);
+      logger.error("Form submission error:", error);
     } finally {
       setIsSubmitting(false);
     }

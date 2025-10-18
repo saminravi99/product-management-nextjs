@@ -35,12 +35,19 @@ export default function Header() {
           <Link
             href="/products"
             className="flex items-center space-x-2 text-xl font-bold text-licorice dark:text-baby-powder hover:text-giants-orange dark:hover:text-mindaro transition-colors"
+            aria-label="ProductHub - Go to products page"
           >
-            <Package className="w-8 h-8 text-giants-orange dark:text-mindaro" />
+            <Package
+              className="w-8 h-8 text-giants-orange dark:text-mindaro"
+              aria-hidden="true"
+            />
             <span className="hidden sm:inline">ProductHub</span>
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-1">
+          <nav
+            className="hidden md:flex items-center space-x-1"
+            aria-label="Main navigation"
+          >
             {navigation.map((item) => {
               const isActive = pathname === item.href;
               return (
@@ -52,6 +59,8 @@ export default function Header() {
                       ? "bg-giants-orange dark:bg-mindaro text-white dark:text-licorice shadow-lg"
                       : "text-licorice/80 dark:text-baby-powder/80 hover:bg-giants-orange/10 dark:hover:bg-mindaro/20 hover:text-giants-orange dark:hover:text-mindaro border border-transparent hover:border-giants-orange/30 dark:hover:border-mindaro/30"
                   }`}
+                  aria-label={`Navigate to ${item.name}`}
+                  aria-current={isActive ? "page" : undefined}
                 >
                   {item.name}
                 </Link>
@@ -67,6 +76,7 @@ export default function Header() {
                 size="sm"
                 onClick={handleLogout}
                 className="font-semibold"
+                aria-label="Logout from your account"
               >
                 Logout
               </Button>
@@ -144,6 +154,7 @@ export default function Header() {
                 closeMobileMenu();
               }}
               className="w-full font-semibold"
+              aria-label="Logout from your account"
             >
               Logout
             </Button>

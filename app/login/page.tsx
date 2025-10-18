@@ -4,8 +4,20 @@ import { Package } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Login - ProductHub",
-  description: "Sign in to access the ProductHub product management system",
+  title: "Login - ProductHub | Sign In to Your Account",
+  description:
+    "Sign in to access the ProductHub product management system. Manage your product catalog, inventory, categories, and streamline your e-commerce operations securely.",
+  keywords: [
+    "login",
+    "sign in",
+    "authentication",
+    "user account",
+    "product management",
+  ],
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function LoginPage() {
