@@ -21,12 +21,14 @@ export default function NotFound() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild>
-              <Link href="/products">Go to Products</Link>
-            </Button>
-            <Button variant="ghost" size="lg" asChild>
-              <Link href="/">Go Home</Link>
-            </Button>
+            <Link href="/products">
+              <Button size="lg">Go to Products</Button>
+            </Link>
+            <Link href="/">
+              <Button variant="ghost" size="lg">
+                Go Home
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
