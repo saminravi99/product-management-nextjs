@@ -163,20 +163,18 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                 {formatDate(product.createdAt)}
               </p>
               <p>
-                <span className="font-medium text-licorice">
-                  Last Updated:
-                </span>{" "}
+                <span className="font-medium text-licorice">Last Updated:</span>{" "}
                 {formatDate(product.updatedAt)}
               </p>
             </div>
 
             <div className="flex gap-4 pt-4">
-              <Button className="flex-1" asChild>
-                <Link href={`/products/${product.slug}/edit`}>
+              <Link href={`/products/${product.slug}/edit`} className="flex-1">
+                <Button className="w-full">
                   <Edit className="w-4 h-4 mr-2" />
                   Edit Product
-                </Link>
-              </Button>
+                </Button>
+              </Link>
               <Button
                 variant="destructive"
                 className="flex-1"

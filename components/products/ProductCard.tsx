@@ -88,9 +88,11 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
 
           <div className="flex gap-2">
-            <Button variant="secondary" size="sm" className="flex-1" asChild>
-              <Link href={`/products/${product.slug}/edit`}>Edit</Link>
-            </Button>
+            <Link href={`/products/${product.slug}/edit`} className="flex-1">
+              <Button variant="secondary" size="sm" className="w-full">
+                Edit
+              </Button>
+            </Link>
             <Button
               variant="destructive"
               size="sm"

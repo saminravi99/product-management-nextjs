@@ -55,12 +55,12 @@ export default async function ProductsPage({
         <div className="flex-1">
           <ProductsSearch initialValue={searchQuery} />
         </div>
-        <Button asChild>
-          <Link href="/products/create">
+        <Link href="/products/create">
+          <Button>
             <Plus className="w-5 h-5 mr-2" />
             Create Product
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </div>
 
       {error && (
@@ -86,9 +86,9 @@ export default async function ProductsPage({
               : "Get started by creating your first product."}
           </p>
           {!searchQuery && (
-            <Button asChild>
-              <Link href="/products/create">Create Your First Product</Link>
-            </Button>
+            <Link href="/products/create">
+              <Button>Create Your First Product</Button>
+            </Link>
           )}
         </div>
       )}
