@@ -1,9 +1,8 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { cn } from "@/lib/utils";
-import Button from "./Button";
 
 interface ModalProps {
   isOpen: boolean;

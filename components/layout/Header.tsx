@@ -1,11 +1,11 @@
 "use client";
 
+import Button from "@/components/ui/Button";
+import { apiClient } from "@/lib/api/client";
+import { logout } from "@/lib/redux/authSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
-import { logout } from "@/lib/redux/authSlice";
-import { apiClient } from "@/lib/api/client";
-import Button from "@/components/ui/Button";
 
 export default function Header() {
   const pathname = usePathname();

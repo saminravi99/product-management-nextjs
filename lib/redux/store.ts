@@ -3,12 +3,12 @@ import authReducer from "./authSlice";
 import productsReducer from "./productsSlice";
 
 export const makeStore = () => {
-  return configureStore({
-    reducer: {
-      auth: authReducer,
-      products: productsReducer,
-    },
-  });
+    return configureStore({
+        reducer: {
+            auth: authReducer,
+            products: productsReducer,
+        },
+    });
 };
 
 // Infer the type of makeStore
