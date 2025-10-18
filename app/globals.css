@@ -1,9 +1,7 @@
 @import "tailwindcss";
 
-/* Tailwind v4 Dark Mode Configuration */
 @variant dark (&:is(.dark *));
 
-/* Custom color palette */
 @theme {
   --color-mindaro: #c5d86d;
   --color-licorice: #261c15;
@@ -11,14 +9,12 @@
   --color-beige: #e4e6c3;
   --color-giants-orange: #f05d23;
 
-  /* Light mode colors */
   --light-bg: #f7f7f2;
   --light-card-bg: #ffffff;
   --light-text: #261c15;
   --light-text-secondary: rgba(38, 28, 21, 0.7);
   --light-border: rgba(38, 28, 21, 0.15);
 
-  /* Dark mode colors */
   --dark-bg: #0f0d0b;
   --dark-card-bg: rgba(38, 28, 21, 0.6);
   --dark-text: #f7f7f2;
@@ -26,7 +22,6 @@
   --dark-border: rgba(197, 216, 109, 0.3);
 }
 
-/* Smooth theme transitions - exclude transform for menus */
 body,
 body *:not(html):not([class*="translate-x"]) {
   transition: background-color 0.3s ease, color 0.3s ease,
@@ -43,7 +38,6 @@ body {
   min-height: 100vh;
 }
 
-/* Dark mode styles */
 .dark body {
   background-color: #0f0d0b;
   color: #f7f7f2;
@@ -70,7 +64,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
@@ -91,7 +84,6 @@ html {
   background: #c5d86d;
 }
 
-/* Dark mode scrollbar */
 .dark ::-webkit-scrollbar-track {
   background: #0f0d0b;
 }
@@ -105,7 +97,6 @@ html {
   background: #f05d23;
 }
 
-/* Firefox scrollbar */
 * {
   scrollbar-width: thin;
   scrollbar-color: #261c15 #f7f7f2;
