@@ -6,8 +6,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Products - ProductHub",
-  description: "Browse and manage your product catalog",
+  title: "Products - ProductHub | Browse & Manage Your Product Catalog",
+  description:
+    "Browse, search, and manage your complete product catalog with ProductHub. Create, edit, and organize products efficiently with our modern product management system. Filter by categories, search instantly, and streamline your inventory workflow.",
+  keywords: [
+    "product catalog",
+    "inventory management",
+    "product list",
+    "e-commerce products",
+    "product search",
+  ],
+  openGraph: {
+    title: "Products - ProductHub",
+    description: "Browse and manage your complete product catalog",
+    type: "website",
+  },
 };
 
 interface ProductsPageProps {
@@ -19,6 +32,11 @@ export default async function ProductsPage({
 }: ProductsPageProps) {
   const params = await searchParams;
   const searchQuery = params.search || "";
+
+  const { fetchProducts } = await import("@/lib/actions/products");
+  const { products, error } = await fetchProducts({
+    search: searchQuery,
+  });
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -43,7 +61,11 @@ export default async function ProductsPage({
         </Link>
       </div>
 
-      <ProductsList searchQuery={searchQuery} />
+      <ProductsList
+        searchQuery={searchQuery}
+        initialProducts={products}
+        initialError={error}
+      />
     </div>
   );
 }

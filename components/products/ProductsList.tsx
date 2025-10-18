@@ -12,34 +12,44 @@ import { useEffect, useState } from "react";
 
 interface ProductsListProps {
   searchQuery: string;
+  initialProducts: Product[];
+  initialError?: string;
 }
 
-export default function ProductsList({ searchQuery }: ProductsListProps) {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+export default function ProductsList({
+  searchQuery,
+  initialProducts,
+  initialError,
+}: ProductsListProps) {
+  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const [error, setError] = useState<string | null>(initialError || null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [previousSearchQuery, setPreviousSearchQuery] = useState(searchQuery);
 
   useEffect(() => {
-    const loadProducts = async () => {
-      setIsLoading(true);
-      setError(null);
+    if (searchQuery !== previousSearchQuery) {
+      const loadProducts = async () => {
+        setIsLoading(true);
+        setError(null);
 
-      const { products: fetchedProducts, error: fetchError } =
-        await fetchProducts({
-          search: searchQuery,
-        });
+        const { products: fetchedProducts, error: fetchError } =
+          await fetchProducts({
+            search: searchQuery,
+          });
 
-      if (fetchError) {
-        setError(fetchError);
-      } else {
-        setProducts(fetchedProducts);
-      }
+        if (fetchError) {
+          setError(fetchError);
+        } else {
+          setProducts(fetchedProducts);
+        }
 
-      setIsLoading(false);
-    };
+        setIsLoading(false);
+        setPreviousSearchQuery(searchQuery);
+      };
 
-    loadProducts();
-  }, [searchQuery]);
+      loadProducts();
+    }
+  }, [searchQuery, previousSearchQuery]);
 
   if (isLoading) {
     return (
@@ -67,7 +77,7 @@ export default function ProductsList({ searchQuery }: ProductsListProps) {
     return (
       <div className="bg-white dark:bg-licorice/30 rounded-xl shadow-lg p-12 text-center border-2 border-licorice/10 dark:border-mindaro/20">
         <div className="flex justify-center mb-4">
-          <Package className="w-16 h-16 text-licorice/40 dark:text-baby-powder/40" />
+          <Package className="w-16 h-16 text-licorice/60 dark:text-baby-powder/60" />
         </div>
         <h3 className="text-xl font-semibold text-licorice dark:text-baby-powder mb-2">
           {searchQuery ? "No products found" : "No products yet"}
