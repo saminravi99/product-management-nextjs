@@ -1,4 +1,3 @@
-import ProductForm from "@/components/products/ProductForm";
 import { Button } from "@/components/ui/button";
 import {
   fetchCategories,
@@ -8,7 +7,14 @@ import {
 import type { ProductFormData } from "@/types";
 import { Package } from "lucide-react";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
+
+const ProductForm = dynamic(() => import("@/components/products/ProductForm"), {
+  loading: () => (
+    <div className="animate-pulse h-96 bg-gray-200 dark:bg-gray-700 rounded-lg"></div>
+  ),
+});
 
 interface EditProductPageProps {
   params: Promise<{ slug: string }>;
@@ -22,8 +28,21 @@ export async function generateMetadata({
 
   return {
     title: product
-      ? `Edit ${product.name} - ProductHub`
+      ? `Edit ${product.name} - ProductHub | Update Product Details`
       : "Edit Product - ProductHub",
+    description: product
+      ? `Update and manage ${product.name}. Edit product details, images, pricing, stock levels, and category information.`
+      : "Edit product details and information in your catalog",
+    keywords: [
+      "edit product",
+      "update product",
+      "modify product",
+      "product management",
+    ],
+    robots: {
+      index: false,
+      follow: true,
+    },
   };
 }
 
@@ -40,10 +59,10 @@ export default async function EditProductPage({
     return (
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white dark:bg-licorice/30 rounded-xl shadow-md dark:shadow-mindaro/10 p-12 text-center border-2 border-licorice dark:border-mindaro/20">
-          <Package className="w-16 h-16 text-licorice/40 dark:text-baby-powder/40 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-licorice dark:text-baby-powder mb-2">
+          <Package className="w-16 h-16 text-licorice/60 dark:text-baby-powder/60 mx-auto mb-4" />
+          <h1 className="text-2xl font-bold text-licorice dark:text-baby-powder mb-2">
             Product Not Found
-          </h2>
+          </h1>
           <p className="text-licorice/70 dark:text-baby-powder/70 mb-6">
             The product you&apos;re trying to edit doesn&apos;t exist.
           </p>
