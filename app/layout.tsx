@@ -1,5 +1,4 @@
-import { ThemeApplier } from "@/components/theme-applier";
-import { StoreProvider } from "@/lib/store/StoreProvider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -64,12 +63,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="h-full">
       <body
-        className={`${inter.variable} antialiased bg-baby-powder  text-licorice dark:text-baby-powder transition-colors duration-300 min-h-screen`}
+        className={`${inter.variable} antialiased bg-baby-powder dark:bg-[#0f0d0b] text-licorice dark:text-baby-powder transition-colors duration-300 min-h-screen`}
       >
-        <StoreProvider>
-          <ThemeApplier />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+        >
           {children}
-        </StoreProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

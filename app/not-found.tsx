@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex flex-col bg-baby-powder dark:bg-[#0f0d0b] transition-colors duration-300">
+    <div className="min-h-screen flex flex-col bg-baby-powder dark:bg-licorice transition-colors duration-300">
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="text-center max-w-md">
           <div className="mb-8">

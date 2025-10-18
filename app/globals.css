@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Tailwind v4 Dark Mode Configuration */
+@variant dark (&:is(.dark *));
+
 /* Custom color palette */
 @theme {
   --color-mindaro: #c5d86d;

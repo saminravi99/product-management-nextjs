@@ -27,7 +27,7 @@ export default function TestThemePage() {
   }, [theme]);
 
   return (
-    <div className="min-h-screen p-8 bg-baby-powder dark:bg-[#0f0d0b] text-licorice dark:text-baby-powder">
+    <div className="min-h-screen p-8 bg-baby-powder dark:bg-licorice text-licorice dark:text-baby-powder">
       <h1 className="text-4xl font-bold mb-8">Theme Test Page</h1>
 
       <div className="space-y-4 max-w-2xl">
@@ -107,7 +107,7 @@ export default function TestThemePage() {
         <div className="p-6 border-2 border-licorice dark:border-mindaro rounded-lg bg-white dark:bg-[#1a1612]">
           <h2 className="text-2xl font-semibold mb-4">Visual Test</h2>
           <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 bg-baby-powder dark:bg-[#0f0d0b] border-2 border-licorice dark:border-mindaro rounded">
+            <div className="p-4 bg-baby-powder dark:bg-licorice border-2 border-licorice dark:border-mindaro rounded">
               <p className="font-semibold">Background adapts</p>
               <p className="text-sm opacity-70">
                 This box should change colors

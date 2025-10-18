@@ -16,7 +16,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-baby-powder dark:bg-[#0f0d0b] transition-colors duration-300">
+    <div className="min-h-screen flex flex-col bg-baby-powder dark:bg-licorice transition-colors duration-300">
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="text-center max-w-md bg-white dark:bg-licorice/30 rounded-xl shadow-lg dark:shadow-mindaro/10 p-8 border-2 border-licorice dark:border-mindaro/30">
           <div className="mb-6">

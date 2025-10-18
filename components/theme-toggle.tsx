@@ -1,31 +1,38 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
-import { toggleTheme } from "@/lib/store/slices/themeSlice";
 import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export function ThemeToggle() {
-  const dispatch = useAppDispatch();
-  const theme = useAppSelector((state) => state.theme.theme);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
-  const handleToggle = () => {
-    console.log("🔄 Theme Toggle: Current theme:", theme);
-    dispatch(toggleTheme());
-    console.log("🔄 Theme Toggle: Dispatched toggleTheme action");
-  };
+  // useEffect only runs on the client, so now we can safely show the UI
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <Button variant="ghost" size="icon">
+        <Sun className="h-[1.2rem] w-[1.2rem]" />
+        <span className="sr-only">Toggle theme</span>
+      </Button>
+    );
+  }
 
   return (
     <Button
       variant="ghost"
       size="icon"
-      onClick={handleToggle}
-      aria-label="Toggle theme"
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
       {theme === "dark" ? (
-        <Sun className="h-[1.2rem] w-[1.2rem] text-baby-powder" />
+        <Sun className="h-[1.2rem] w-[1.2rem]" />
       ) : (
-        <Moon className="h-[1.2rem] w-[1.2rem] text-licorice" />
+        <Moon className="h-[1.2rem] w-[1.2rem]" />
       )}
       <span className="sr-only">Toggle theme</span>
     </Button>
