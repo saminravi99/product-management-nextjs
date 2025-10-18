@@ -1,4 +1,4 @@
-import StoreProvider from "@/lib/redux/StoreProvider";
+import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -12,7 +12,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "ProductHub - Product Management System",
   description:
-    "A modern, efficient product management application built with Next.js, Redux, and Tailwind CSS. Browse, create, edit, and manage products seamlessly.",
+    "A modern, efficient product management application built with Next.js and Tailwind CSS. Browse, create, edit, and manage products seamlessly.",
   keywords: [
     "product management",
     "e-commerce",
@@ -54,9 +54,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="antialiased">
-        <StoreProvider>{children}</StoreProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

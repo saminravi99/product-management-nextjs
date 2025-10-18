@@ -1,25 +1,21 @@
 "use client";
 
-import Button from "@/components/ui/Button";
-import { apiClient } from "@/lib/api/client";
-import { logout } from "@/lib/redux/authSlice";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
+import { logoutUser } from "@/lib/actions/products";
+import { Package } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
-  const dispatch = useAppDispatch();
-  const { email, isAuthenticated } = useAppSelector((state) => state.auth);
 
-  const handleLogout = () => {
-    dispatch(logout());
-    apiClient.clearToken();
+  const handleLogout = async () => {
+    await logoutUser();
     router.push("/login");
+    router.refresh();
   };
-
-  if (!isAuthenticated) return null;
 
   const navigation = [
     { name: "Products", href: "/products" },
@@ -27,29 +23,17 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-gray-200 bg-white shadow-sm">
+    <header className="sticky top-0 z-40 w-full border-b-2 border-[#261c15] bg-white shadow-sm dark:bg-[#261c15] dark:border-[#c5d86d]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
           <Link
             href="/products"
-            className="flex items-center space-x-2 text-xl font-bold text-licorice hover:text-giants-orange transition-colors"
+            className="flex items-center space-x-2 text-xl font-bold text-[#261c15] dark:text-[#f7f7f2] hover:text-[#f05d23] dark:hover:text-[#f05d23] transition-colors"
           >
-            <svg
-              className="w-8 h-8 text-giants-orange"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-            </svg>
+            <Package className="w-8 h-8 text-[#f05d23]" />
             <span>ProductHub</span>
           </Link>
 
-          {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             {navigation.map((item) => {
               const isActive = pathname === item.href;
@@ -59,8 +43,8 @@ export default function Header() {
                   href={item.href}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                     isActive
-                      ? "bg-mindaro text-licorice"
-                      : "text-gray-600 hover:bg-beige hover:text-licorice"
+                      ? "bg-[#c5d86d] text-[#261c15]"
+                      : "text-[#261c15]/70 dark:text-[#f7f7f2]/70 hover:bg-[#e4e6c3] dark:hover:bg-[#f7f7f2]/10 hover:text-[#261c15] dark:hover:text-[#f7f7f2]"
                   }`}
                 >
                   {item.name}
@@ -69,11 +53,8 @@ export default function Header() {
             })}
           </nav>
 
-          {/* User Menu */}
-          <div className="flex items-center space-x-4">
-            <span className="hidden sm:inline-block text-sm text-gray-600">
-              {email}
-            </span>
+          <div className="flex items-center space-x-2">
+            <ThemeToggle />
             <Button variant="ghost" size="sm" onClick={handleLogout}>
               Logout
             </Button>
