@@ -49,9 +49,9 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <>
-      <article className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-licorice hover:border-mindaro">
+      <article className="group bg-white dark:bg-licorice/40 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-licorice/10 dark:border-mindaro/20 hover:border-mindaro dark:hover:border-mindaro backdrop-blur-sm">
         <Link href={`/products/${product.slug}`} className="block">
-          <div className="relative h-48 sm:h-56 bg-baby-powder overflow-hidden">
+          <div className="relative h-48 sm:h-56 bg-beige dark:bg-licorice/60 overflow-hidden">
             <Image
               src={imageUrl}
               alt={product.name}
@@ -62,7 +62,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             />
             {product.category && (
               <div className="absolute top-3 left-3">
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white bg-opacity-90 text-licorice backdrop-blur-sm border border-licorice">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/95 dark:bg-licorice/95 text-licorice dark:text-baby-powder backdrop-blur-sm border border-licorice/20 dark:border-mindaro/30">
                   {product.category.name}
                 </span>
               </div>
@@ -72,12 +72,12 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <div className="p-5">
           <Link href={`/products/${product.slug}`}>
-            <h3 className="text-lg font-semibold text-licorice mb-2 line-clamp-2 group-hover:text-giants-orange transition-colors">
+            <h3 className="text-lg font-semibold text-licorice dark:text-baby-powder mb-2 line-clamp-2 group-hover:text-giants-orange transition-colors">
               {product.name}
             </h3>
           </Link>
 
-          <p className="text-sm text-licorice/70 mb-4 line-clamp-2">
+          <p className="text-sm text-licorice/70 dark:text-baby-powder/70 mb-4 line-clamp-2">
             {product.description}
           </p>
 
