@@ -64,7 +64,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="h-full">
       <body
-        className={`${inter.variable} antialiased bg-baby-powder dark:bg-[#0f0d0b] text-licorice dark:text-baby-powder transition-colors duration-300 min-h-screen`}
+        className={`${inter.variable} antialiased bg-baby-powder  text-licorice dark:text-baby-powder transition-colors duration-300 min-h-screen`}
       >
         <StoreProvider>
           <ThemeApplier />

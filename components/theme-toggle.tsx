@@ -9,11 +9,17 @@ export function ThemeToggle() {
   const dispatch = useAppDispatch();
   const theme = useAppSelector((state) => state.theme.theme);
 
+  const handleToggle = () => {
+    console.log("🔄 Theme Toggle: Current theme:", theme);
+    dispatch(toggleTheme());
+    console.log("🔄 Theme Toggle: Dispatched toggleTheme action");
+  };
+
   return (
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => dispatch(toggleTheme())}
+      onClick={handleToggle}
       aria-label="Toggle theme"
     >
       {theme === "dark" ? (

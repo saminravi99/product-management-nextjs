@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
-import storage from './storage';
 import themeReducer from './slices/themeSlice';
+import storage from './storage';
 
 const persistConfig = {
     key: 'producthub-root',

@@ -15,17 +15,22 @@ export function StoreProvider({ children }: StoreProviderProps) {
   const persistorRef = useRef<ReturnType<typeof persistStore> | null>(null);
 
   if (!storeRef.current) {
+    console.log("🏪 StoreProvider: Initializing store...");
     storeRef.current = makeStore();
     persistorRef.current = persistStore(storeRef.current);
   }
 
   return (
     <Provider store={storeRef.current}>
-      {persistorRef.current && (
-        <PersistGate loading={null} persistor={persistorRef.current}>
-          {children}
-        </PersistGate>
-      )}
+      <PersistGate
+        loading={<div>Loading theme...</div>}
+        persistor={persistorRef.current!}
+        onBeforeLift={() => {
+          console.log("🚀 PersistGate: State has been rehydrated");
+        }}
+      >
+        {children}
+      </PersistGate>
     </Provider>
   );
 }

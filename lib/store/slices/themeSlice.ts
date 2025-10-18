@@ -6,6 +6,7 @@ interface ThemeState {
     theme: Theme;
 }
 
+// Always start with light mode by default
 const initialState: ThemeState = {
     theme: 'light',
 };
@@ -15,10 +16,13 @@ const themeSlice = createSlice({
     initialState,
     reducers: {
         setTheme: (state, action: PayloadAction<Theme>) => {
+            console.log('🔄 Redux: setTheme action:', action.payload);
             state.theme = action.payload;
         },
         toggleTheme: (state) => {
-            state.theme = state.theme === 'light' ? 'dark' : 'light';
+            const newTheme = state.theme === 'light' ? 'dark' : 'light';
+            console.log('🔄 Redux: toggleTheme action:', state.theme, '→', newTheme);
+            state.theme = newTheme;
         },
     },
 });
