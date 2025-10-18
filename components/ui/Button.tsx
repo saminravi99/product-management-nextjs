@@ -56,8 +56,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    // When using asChild, we can't add the loading spinner as a sibling
-    // So we disable asChild when loading
     const shouldUseSlot = asChild && !isLoading;
     const Comp = shouldUseSlot ? Slot : "button";
 

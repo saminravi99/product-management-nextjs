@@ -1,4 +1,3 @@
-// Product Types
 export interface Category {
     id: string;
     name: string;
@@ -35,7 +34,6 @@ export interface ProductsResponse {
     limit: number;
 }
 
-// Auth Types
 export interface AuthResponse {
     token: string;
 }
@@ -44,7 +42,6 @@ export interface AuthRequest {
     email: string;
 }
 
-// API Types
 export interface ApiError {
     message: string;
     statusCode?: number;
