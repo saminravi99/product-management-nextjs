@@ -131,31 +131,33 @@ export function CategoryFilter({
         </Button>
       </div>
 
-      {isMobileOpen && (
-        <>
-          <div
-            className="lg:hidden fixed inset-0 bg-black/50 z-50"
-            onClick={() => setIsMobileOpen(false)}
-          />
-          <div className="lg:hidden fixed inset-y-0 right-0 w-80 max-w-full bg-baby-powder dark:bg-[#1a1410] z-50 shadow-2xl overflow-y-auto">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-bold text-licorice dark:text-baby-powder">
-                  Filter Products
-                </h2>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setIsMobileOpen(false)}
-                >
-                  <X className="h-5 w-5" />
-                </Button>
-              </div>
-              <FilterContent />
-            </div>
+      <div
+        className={`lg:hidden fixed inset-0 bg-black/50 z-50 transition-opacity duration-300 ${
+          isMobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setIsMobileOpen(false)}
+      />
+      <div
+        className={`lg:hidden fixed inset-y-0 right-0 w-80 max-w-full bg-baby-powder dark:bg-[#1a1410] z-50 shadow-2xl overflow-y-auto transition-transform duration-300 ease-in-out ${
+          isMobileOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="p-6">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-bold text-licorice dark:text-baby-powder">
+              Filter Products
+            </h2>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMobileOpen(false)}
+            >
+              <X className="h-5 w-5" />
+            </Button>
           </div>
-        </>
-      )}
+          <FilterContent />
+        </div>
+      </div>
     </>
   );
 }

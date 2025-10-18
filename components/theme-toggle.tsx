@@ -66,11 +66,7 @@ export function ThemeToggle({ isMobileMenu = false }: ThemeToggleProps) {
   }
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={handleToggle}
-    >
+    <Button variant="ghost" size="icon" onClick={handleToggle}>
       {theme === "dark" ? (
         <Sun className="h-[1.2rem] w-[1.2rem]" />
       ) : (

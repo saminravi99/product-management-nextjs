@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import CategoryFilterSkeleton from '@/components/products/CategoryFilterSkeleton';
-import { ProductsGrid } from '@/components/products/ProductsGrid';
-import ProductsGridSkeleton from '@/components/products/ProductsGridSkeleton';
-import { Button } from '@/components/ui/button';
-import { fetchProducts } from '@/lib/actions/products';
-import type { Product } from '@/types';
-import { Package } from 'lucide-react';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import CategoryFilterSkeleton from "@/components/products/CategoryFilterSkeleton";
+import { ProductsGrid } from "@/components/products/ProductsGrid";
+import ProductsGridSkeleton from "@/components/products/ProductsGridSkeleton";
+import { Button } from "@/components/ui/button";
+import { fetchProducts } from "@/lib/actions/products";
+import type { Product } from "@/types";
+import { Package } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface ProductsListProps {
   searchQuery: string;

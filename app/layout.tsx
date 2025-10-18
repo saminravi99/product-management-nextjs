@@ -23,13 +23,6 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "ProductHub Team" }],
   creator: "ProductHub",
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/icon.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
-  },
   openGraph: {
     type: "website",
     locale: "en_US",
