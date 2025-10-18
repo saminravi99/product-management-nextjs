@@ -133,20 +133,7 @@ export default function Header() {
           </nav>
 
           <div className="border-t-2 border-licorice/20 dark:border-mindaro/40 pt-4 space-y-3">
-            <button
-              onClick={() => {
-                const themeButton = document.querySelector(
-                  "[data-theme-toggle]"
-                ) as HTMLElement;
-                themeButton?.click();
-              }}
-              className="w-full px-4 py-3 rounded-lg text-left font-semibold text-licorice dark:text-baby-powder hover:bg-giants-orange/10 dark:hover:bg-mindaro/20 border-2 border-licorice/20 dark:border-mindaro/40 hover:border-giants-orange/30 dark:hover:border-mindaro/30 transition-all flex items-center justify-between"
-            >
-              <span>Toggle Theme</span>
-              <div data-theme-toggle className="inline-flex">
-                <ThemeToggle />
-              </div>
-            </button>
+            <ThemeToggle isMobileMenu />
             <Button
               variant="outline"
               size="lg"

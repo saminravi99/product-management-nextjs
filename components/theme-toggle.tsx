@@ -5,7 +5,11 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-export function ThemeToggle() {
+interface ThemeToggleProps {
+  isMobileMenu?: boolean;
+}
+
+export function ThemeToggle({ isMobileMenu = false }: ThemeToggleProps) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -13,7 +17,23 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
+  const handleToggle = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   if (!mounted) {
+    if (isMobileMenu) {
+      return (
+        <Button
+          variant="outline"
+          size="lg"
+          className="w-full font-semibold justify-start"
+        >
+          <Sun className="h-[1.2rem] w-[1.2rem] mr-2" />
+          <span>Toggle Theme</span>
+        </Button>
+      );
+    }
     return (
       <Button variant="ghost" size="icon">
         <Sun className="h-[1.2rem] w-[1.2rem]" />
@@ -22,11 +42,34 @@ export function ThemeToggle() {
     );
   }
 
+  if (isMobileMenu) {
+    return (
+      <Button
+        variant="outline"
+        size="lg"
+        onClick={handleToggle}
+        className="w-full font-semibold justify-start"
+      >
+        {theme === "dark" ? (
+          <>
+            <Sun className="h-[1.2rem] w-[1.2rem] mr-2" />
+            <span>Light Mode</span>
+          </>
+        ) : (
+          <>
+            <Moon className="h-[1.2rem] w-[1.2rem] mr-2" />
+            <span>Dark Mode</span>
+          </>
+        )}
+      </Button>
+    );
+  }
+
   return (
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={handleToggle}
     >
       {theme === "dark" ? (
         <Sun className="h-[1.2rem] w-[1.2rem]" />

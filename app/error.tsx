@@ -1,6 +1,5 @@
 "use client";
 
-import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 
