@@ -65,3 +65,48 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f7f7f2;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #261c15;
+  border-radius: 10px;
+  border: 2px solid #f7f7f2;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c5d86d;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #0f0d0b;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #c5d86d;
+  border: 2px solid #0f0d0b;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #f05d23;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #261c15 #f7f7f2;
+}
+
+.dark * {
+  scrollbar-color: #c5d86d #0f0d0b;
+}
