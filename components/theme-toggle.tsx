@@ -27,10 +27,10 @@ export function ThemeToggle({ isMobileMenu = false }: ThemeToggleProps) {
         <Button
           variant="outline"
           size="lg"
-          className="w-full font-semibold justify-start"
+          className="w-full font-semibold justify-center"
         >
-          <Sun className="h-[1.2rem] w-[1.2rem] mr-2" />
-          <span>Toggle Theme</span>
+          <Sun className="h-5 w-5" />
+          <span className="sr-only">Toggle theme</span>
         </Button>
       );
     }
@@ -48,19 +48,14 @@ export function ThemeToggle({ isMobileMenu = false }: ThemeToggleProps) {
         variant="outline"
         size="lg"
         onClick={handleToggle}
-        className="w-full font-semibold justify-start"
+        className="w-full font-semibold justify-center"
       >
         {theme === "dark" ? (
-          <>
-            <Sun className="h-[1.2rem] w-[1.2rem] mr-2" />
-            <span>Light Mode</span>
-          </>
+          <Sun className="h-5 w-5" />
         ) : (
-          <>
-            <Moon className="h-[1.2rem] w-[1.2rem] mr-2" />
-            <span>Dark Mode</span>
-          </>
+          <Moon className="h-5 w-5" />
         )}
+        <span className="sr-only">Toggle theme</span>
       </Button>
     );
   }
