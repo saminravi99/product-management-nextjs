@@ -28,8 +28,9 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [imageError, setImageError] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Check if the product has a valid image URL
-  const hasValidImage = !imageError && isValidImageUrl(product.images[0]);
+  // Check if the product has a valid image URL - with null safety
+  const hasValidImage =
+    !imageError && product.images?.[0] && isValidImageUrl(product.images[0]);
 
   // Use valid image or placeholder
   const imageUrl = hasValidImage ? product.images[0] : getDefaultProductImage();
@@ -49,9 +50,9 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <>
-      <article className="group bg-white dark:bg-licorice/60 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-licorice/15 dark:border-mindaro/30 hover:border-giants-orange/50 dark:hover:border-mindaro backdrop-blur-sm">
+      <article className="group bg-white dark:bg-[#1a1614] rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-licorice/10 dark:border-mindaro/40 hover:border-giants-orange dark:hover:border-mindaro backdrop-blur-sm flex flex-col h-full">
         <Link href={`/products/${product.slug}`} className="block">
-          <div className="relative h-48 sm:h-56 bg-beige/50 dark:bg-black/40 overflow-hidden">
+          <div className="relative h-48 sm:h-56 bg-gradient-to-br from-beige/30 to-baby-powder/20 dark:from-black/60 dark:to-licorice/80 overflow-hidden">
             <Image
               src={imageUrl}
               alt={product.name}
@@ -59,10 +60,11 @@ export default function ProductCard({ product }: ProductCardProps) {
               className="object-cover group-hover:scale-105 transition-transform duration-300"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               onError={() => setImageError(true)}
+              priority={false}
             />
             {product.category && (
               <div className="absolute top-3 left-3">
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/95 dark:bg-black/90 text-licorice dark:text-mindaro backdrop-blur-sm border border-licorice/30 dark:border-mindaro/50 shadow-lg">
+                <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold bg-white dark:bg-mindaro/95 text-licorice dark:text-licorice backdrop-blur-md border-2 border-licorice/20 dark:border-mindaro shadow-xl">
                   {product.category.name}
                 </span>
               </div>
@@ -70,38 +72,44 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         </Link>
 
-        <div className="p-5 bg-white dark:bg-licorice/80">
-          <Link href={`/products/${product.slug}`}>
-            <h3 className="text-lg font-bold text-licorice dark:text-baby-powder mb-2 line-clamp-2 group-hover:text-giants-orange dark:group-hover:text-mindaro transition-colors">
+        <div className="p-5 bg-gradient-to-b from-white to-baby-powder/30 dark:from-[#1a1614] dark:to-licorice/60 flex flex-col flex-1">
+          <Link href={`/products/${product.slug}`} className="block mb-2">
+            <h3 className="text-lg font-bold text-licorice dark:text-baby-powder line-clamp-2 group-hover:text-giants-orange dark:group-hover:text-mindaro transition-colors min-h-[3.5rem]">
               {product.name}
             </h3>
           </Link>
 
-          <p className="text-sm text-licorice/80 dark:text-baby-powder/90 mb-4 line-clamp-2">
+          <p className="text-sm text-licorice/70 dark:text-baby-powder/85 mb-4 line-clamp-3 flex-grow">
             {product.description}
           </p>
 
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-2xl font-bold text-giants-orange dark:text-mindaro">
-              {formatPrice(product.price)}
-            </span>
-          </div>
+          <div className="mt-auto">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-2xl font-bold text-giants-orange dark:text-mindaro drop-shadow-sm">
+                {formatPrice(product.price)}
+              </span>
+            </div>
 
-          <div className="flex gap-2">
-            <Link href={`/products/${product.slug}/edit`} className="flex-1">
-              <Button variant="secondary" size="sm" className="w-full">
-                Edit
+            <div className="flex gap-2">
+              <Link href={`/products/${product.slug}/edit`} className="flex-1">
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="w-full font-semibold"
+                >
+                  Edit
+                </Button>
+              </Link>
+              <Button
+                variant="destructive"
+                size="sm"
+                onClick={() => setShowDeleteDialog(true)}
+                disabled={isDeleting}
+                className="flex-1 font-semibold"
+              >
+                Delete
               </Button>
-            </Link>
-            <Button
-              variant="destructive"
-              size="sm"
-              onClick={() => setShowDeleteDialog(true)}
-              disabled={isDeleting}
-              className="flex-1"
-            >
-              Delete
-            </Button>
+            </div>
           </div>
         </div>
       </article>
