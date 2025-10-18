@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/dialog";
 import { deleteProduct } from "@/lib/actions/products";
 import { formatPrice } from "@/lib/utils";
+import { getDefaultProductImage, isValidImageUrl } from "@/lib/utils/image";
 import type { Product } from "@/types";
-import { Package } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -22,17 +22,6 @@ interface ProductCardProps {
   product: Product;
 }
 
-// Helper function to validate image URL
-const isValidImageUrl = (url: string | undefined): boolean => {
-  if (!url) return false;
-  try {
-    const urlObj = new URL(url);
-    return urlObj.protocol === "http:" || urlObj.protocol === "https:";
-  } catch {
-    return false;
-  }
-};
-
 export default function ProductCard({ product }: ProductCardProps) {
   const router = useRouter();
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
@@ -41,6 +30,9 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   // Check if the product has a valid image URL
   const hasValidImage = !imageError && isValidImageUrl(product.images[0]);
+
+  // Use valid image or placeholder
+  const imageUrl = hasValidImage ? product.images[0] : getDefaultProductImage();
 
   const handleDelete = async () => {
     setIsDeleting(true);
@@ -60,20 +52,14 @@ export default function ProductCard({ product }: ProductCardProps) {
       <article className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-licorice hover:border-mindaro">
         <Link href={`/products/${product.slug}`} className="block">
           <div className="relative h-48 sm:h-56 bg-baby-powder overflow-hidden">
-            {hasValidImage ? (
-              <Image
-                src={product.images[0]}
-                alt={product.name}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                onError={() => setImageError(true)}
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-licorice/40">
-                <Package className="w-16 h-16" />
-              </div>
-            )}
+            <Image
+              src={imageUrl}
+              alt={product.name}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              onError={() => setImageError(true)}
+            />
             {product.category && (
               <div className="absolute top-3 left-3">
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white bg-opacity-90 text-licorice backdrop-blur-sm border border-licorice">
