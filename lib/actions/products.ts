@@ -1,5 +1,6 @@
 'use server';
 
+import { logger } from '@/lib/utils/logger';
 import type { Category, Product, ProductFormData } from '@/types';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
@@ -39,7 +40,7 @@ export async function fetchProducts(params?: {
             const products = await response.json();
             return { products, total: products.length };
         } catch (error) {
-            console.error('Error searching products:', error);
+            logger.error('Error searching products:', error);
             return { products: [], total: 0, error: 'Failed to search products' };
         }
     }
@@ -70,7 +71,7 @@ export async function fetchProducts(params?: {
         const products = await response.json();
         return { products, total: products.length };
     } catch (error) {
-        console.error('Error fetching products:', error);
+        logger.error('Error fetching products:', error);
         return { products: [], total: 0, error: 'Failed to fetch products' };
     }
 }
@@ -96,7 +97,7 @@ export async function fetchProductBySlug(slug: string): Promise<Product | null> 
 
         return response.json();
     } catch (error) {
-        console.error('Error fetching product:', error);
+        logger.error('Error fetching product:', error);
         return null;
     }
 }
@@ -126,7 +127,7 @@ export async function searchProducts(searchText: string): Promise<Product[]> {
 
         return response.json();
     } catch (error) {
-        console.error('Error searching products:', error);
+        logger.error('Error searching products:', error);
         return [];
     }
 }
@@ -160,7 +161,7 @@ export async function createProduct(data: ProductFormData): Promise<{ success: b
 
         return { success: true, product };
     } catch (error) {
-        console.error('Error creating product:', error);
+        logger.error('Error creating product:', error);
         return { success: false, error: 'Failed to create product' };
     }
 }
@@ -199,7 +200,7 @@ export async function updateProduct(
 
         return { success: true, product };
     } catch (error) {
-        console.error('Error updating product:', error);
+        logger.error('Error updating product:', error);
         return { success: false, error: 'Failed to update product' };
     }
 }
@@ -230,7 +231,7 @@ export async function deleteProduct(id: string): Promise<{ success: boolean; err
 
         return { success: true };
     } catch (error) {
-        console.error('Error deleting product:', error);
+        logger.error('Error deleting product:', error);
         return { success: false, error: 'Failed to delete product' };
     }
 }
@@ -256,7 +257,7 @@ export async function fetchCategories(): Promise<Category[]> {
 
         return response.json();
     } catch (error) {
-        console.error('Error fetching categories:', error);
+        logger.error('Error fetching categories:', error);
         return [];
     }
 }
@@ -295,7 +296,7 @@ export async function authenticateUser(email: string): Promise<{ success: boolea
 
         return { success: true, token: data.token };
     } catch (error) {
-        console.error('Error authenticating:', error);
+        logger.error('Error authenticating:', error);
         return { success: false, error: 'Authentication failed' };
     }
 }
