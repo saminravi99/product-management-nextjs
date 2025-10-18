@@ -23,11 +23,12 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: '**',
       },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
     ],
-  },
-  experimental: {
-    optimizePackageImports: ['@reduxjs/toolkit', 'react-redux'],
-  },
+  }
 };
 
 export default nextConfig;

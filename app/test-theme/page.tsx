@@ -7,7 +7,6 @@ export default function TestThemePage() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
 
-  // useEffect only runs on the client
   useEffect(() => {
     setMounted(true);
   }, []);
