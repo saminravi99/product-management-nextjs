@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { authenticateUser } from "@/lib/actions/products";
 import { isValidEmail } from "@/lib/utils";
+import { logger } from "@/lib/utils/logger";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -42,7 +43,7 @@ export default function LoginForm() {
       router.refresh();
     } catch (err: unknown) {
       setError("Failed to login. Please try again.");
-      console.error(err);
+      logger.error(err);
     } finally {
       setIsLoading(false);
     }
@@ -85,7 +86,7 @@ export default function LoginForm() {
         Sign In
       </Button>
 
-      <p className="text-xs text-center text-licorice/50 dark:text-baby-powder/50">
+      <p className="text-xs text-center text-licorice/65 dark:text-baby-powder/65">
         Use the same email you provided in your job application
       </p>
     </form>

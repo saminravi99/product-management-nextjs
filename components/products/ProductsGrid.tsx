@@ -84,7 +84,7 @@ export function ProductsGrid({ products }: ProductsGridProps) {
         <div className="flex-1">
           <div className="bg-white dark:bg-licorice/30 rounded-xl shadow-lg p-12 text-center border-2 border-licorice/10 dark:border-mindaro/20">
             <div className="flex justify-center mb-4">
-              <Package className="w-16 h-16 text-licorice/40 dark:text-baby-powder/40" />
+              <Package className="w-16 h-16 text-licorice/60 dark:text-baby-powder/60" />
             </div>
             <h3 className="text-xl font-semibold text-licorice dark:text-baby-powder mb-2">
               No products found
@@ -132,10 +132,14 @@ export function ProductsGrid({ products }: ProductsGridProps) {
         {totalPages === 1 && (
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-licorice dark:text-baby-powder">
+              <label
+                htmlFor="single-page-items-select"
+                className="text-sm font-medium text-licorice dark:text-baby-powder"
+              >
                 Show:
-              </span>
+              </label>
               <select
+                id="single-page-items-select"
                 value={itemsPerPage}
                 onChange={(e) =>
                   handleItemsPerPageChange(Number(e.target.value))
@@ -144,6 +148,7 @@ export function ProductsGrid({ products }: ProductsGridProps) {
                          bg-white dark:bg-licorice/60 text-licorice dark:text-baby-powder
                          text-sm font-medium focus:outline-none focus:ring-2 focus:ring-giants-orange dark:focus:ring-mindaro
                          hover:border-giants-orange dark:hover:border-mindaro transition-colors cursor-pointer shadow-sm"
+                aria-label="Select number of items to display per page"
               >
                 <option value={12}>12</option>
                 <option value={20}>20</option>

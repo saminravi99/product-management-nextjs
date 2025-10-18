@@ -15,6 +15,7 @@ import {
   getDefaultProductImage,
   isValidImageUrl,
 } from "@/lib/utils/imageValidators";
+import { logger } from "@/lib/utils/logger";
 import type { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -43,7 +44,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       setShowDeleteDialog(false);
       router.refresh();
     } catch (error) {
-      console.error("Failed to delete product:", error);
+      logger.error("Failed to delete product:", error);
     } finally {
       setIsDeleting(false);
     }
@@ -51,17 +52,25 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <>
-      <article className="group bg-white dark:bg-[#1a1614] rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-licorice/10 dark:border-mindaro/40 hover:border-giants-orange dark:hover:border-mindaro backdrop-blur-sm flex flex-col h-full">
-        <Link href={`/products/${product.slug}`} className="block">
+      <article
+        className="group bg-white dark:bg-[#1a1614] rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-licorice/10 dark:border-mindaro/40 hover:border-giants-orange dark:hover:border-mindaro backdrop-blur-sm flex flex-col h-full"
+        aria-label={`Product: ${product.name}`}
+      >
+        <Link
+          href={`/products/${product.slug}`}
+          className="block"
+          aria-label={`View details of ${product.name}`}
+        >
           <div className="relative h-48 sm:h-56 bg-gradient-to-br from-beige/30 to-baby-powder/20 dark:from-black/60 dark:to-licorice/80 overflow-hidden">
             <Image
               src={imageUrl}
-              alt={product.name}
+              alt={`Image of ${product.name}`}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               onError={() => setImageError(true)}
               priority={false}
+              loading="lazy"
             />
             {product.category && (
               <div className="absolute top-3 left-3">
@@ -97,6 +106,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   variant="secondary"
                   size="sm"
                   className="w-full font-semibold"
+                  aria-label={`Edit ${product.name}`}
                 >
                   Edit
                 </Button>
@@ -107,6 +117,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 onClick={() => setShowDeleteDialog(true)}
                 disabled={isDeleting}
                 className="flex-1 font-semibold"
+                aria-label={`Delete ${product.name}`}
               >
                 Delete
               </Button>

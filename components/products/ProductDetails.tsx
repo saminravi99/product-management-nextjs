@@ -15,6 +15,7 @@ import {
   getDefaultProductImage,
   isValidImageUrl,
 } from "@/lib/utils/imageValidators";
+import { logger } from "@/lib/utils/logger";
 import type { Product } from "@/types";
 import { ChevronLeft, ChevronRight, Edit, Package, Trash2 } from "lucide-react";
 import Image from "next/image";
@@ -47,7 +48,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       router.push("/products");
       router.refresh();
     } catch (error) {
-      console.error("Failed to delete product:", error);
+      logger.error("Failed to delete product:", error);
     } finally {
       setIsDeleting(false);
     }
@@ -75,7 +76,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           >
             Products
           </Link>
-          <span className="text-licorice/40 dark:text-baby-powder/40">/</span>
+          <span className="text-licorice/60 dark:text-baby-powder/60">/</span>
           <span className="text-licorice/70 dark:text-baby-powder/70">
             {product.name}
           </span>
@@ -141,7 +142,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-baby-powder/50 dark:bg-licorice/50">
-                          <Package className="w-8 h-8 text-licorice/40 dark:text-baby-powder/40" />
+                          <Package className="w-8 h-8 text-licorice/60 dark:text-baby-powder/60" />
                         </div>
                       )}
                     </button>
