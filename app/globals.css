@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* Custom color palette */
+@theme {
+  --color-mindaro: #c5d86d;
+  --color-licorice: #261c15;
+  --color-baby-powder: #f7f7f2;
+  --color-beige: #e4e6c3;
+  --color-giants-orange: #f05d23;
+}
+
 /* Smooth theme transitions */
 * {
   transition: background-color 0.3s ease, color 0.3s ease,
@@ -7,8 +16,8 @@
 }
 
 body {
-  background-color: #f7f7f2;
-  color: #261c15;
+  background-color: var(--color-baby-powder);
+  color: var(--color-licorice);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
