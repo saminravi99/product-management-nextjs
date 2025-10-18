@@ -1,9 +1,7 @@
-import { Package, Github, Twitter, Linkedin } from "lucide-react";
+import { Github, Linkedin, Package, Twitter } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="bg-[#261c15] text-[#f7f7f2] border-t-2 border-[#c5d86d]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -19,15 +17,23 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-[#c5d86d]">Product</h3>
+            <h3 className="font-semibold text-lg mb-4 text-[#c5d86d]">
+              Product
+            </h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/products" className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors">
+                <Link
+                  href="/products"
+                  className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors"
+                >
                   All Products
                 </Link>
               </li>
               <li>
-                <Link href="/products/create" className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors">
+                <Link
+                  href="/products/create"
+                  className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors"
+                >
                   Add Product
                 </Link>
               </li>
@@ -35,20 +41,31 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-[#c5d86d]">Resources</h3>
+            <h3 className="font-semibold text-lg mb-4 text-[#c5d86d]">
+              Resources
+            </h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors">
+                <a
+                  href="#"
+                  className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors"
+                >
                   Documentation
                 </a>
               </li>
               <li>
-                <a href="#" className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors">
+                <a
+                  href="#"
+                  className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors"
+                >
                   API Reference
                 </a>
               </li>
               <li>
-                <a href="#" className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors">
+                <a
+                  href="#"
+                  className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors"
+                >
                   Support
                 </a>
               </li>
@@ -56,7 +73,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-[#c5d86d]">Connect</h3>
+            <h3 className="font-semibold text-lg mb-4 text-[#c5d86d]">
+              Connect
+            </h3>
             <div className="flex space-x-4">
               <a
                 href="#"
@@ -84,7 +103,10 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-[#f7f7f2]/20 mt-8 pt-8 text-center text-sm text-[#f7f7f2]/70">
-          <p>© {currentYear} ProductHub. All rights reserved. Built with Next.js and Tailwind CSS.</p>
+          <p>
+            © 2025 ProductHub. All rights reserved. Built with Next.js and
+            Tailwind CSS.
+          </p>
         </div>
       </div>
     </footer>

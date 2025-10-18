@@ -1,0 +1,22 @@
+
+> product-management@0.1.0 build
+> next build --turbopack
+
+   ▲ Next.js 15.5.6 (Turbopack)
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+   Creating an optimized production build ...
+ ✓ Finished writing to disk in 34ms
+ ✓ Compiled successfully in 1587ms
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/12) ...
+Error occurred prerendering page "/_not-found". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: Minified React error #143; visit https://react.dev/errors/143 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at <unknown> (C:\Projects\product-management\.next\server\chunks\ssr\_3734d5b1._.js:1:5350) {
+  digest: '1331013043'
+}
+Export encountered an error on /_not-found/page: /_not-found, exiting the build.
+ ⨯ Next.js build worker exited with code: 1 and signal: null
