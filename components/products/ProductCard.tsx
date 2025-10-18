@@ -11,7 +11,10 @@ import {
 } from "@/components/ui/dialog";
 import { deleteProduct } from "@/lib/actions/products";
 import { formatPrice } from "@/lib/utils";
-import { getDefaultProductImage, isValidImageUrl } from "@/lib/utils/image";
+import {
+  getDefaultProductImage,
+  isValidImageUrl,
+} from "@/lib/utils/imageValidators";
 import type { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
