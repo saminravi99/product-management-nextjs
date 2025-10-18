@@ -45,8 +45,8 @@ export default async function ProductsPage({
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-[licorice] mb-2">Products</h1>
-        <p className="text-[licorice]/70">
+        <h1 className="text-4xl font-bold text-licorice mb-2">Products</h1>
+        <p className="text-licorice/70">
           Browse, search, and manage your product catalog
         </p>
       </div>
@@ -73,14 +73,14 @@ export default async function ProductsPage({
       )}
 
       {!error && products.length === 0 && (
-        <div className="bg-white rounded-xl shadow-md p-12 text-center border-2 border-[licorice]">
+        <div className="bg-white rounded-xl shadow-md p-12 text-center border-2 border-licorice">
           <div className="flex justify-center mb-4">
-            <Package className="w-16 h-16 text-[licorice]/40" />
+            <Package className="w-16 h-16 text-licorice/40" />
           </div>
-          <h3 className="text-xl font-semibold text-[licorice] mb-2">
+          <h3 className="text-xl font-semibold text-licorice mb-2">
             {searchQuery ? "No products found" : "No products yet"}
           </h3>
-          <p className="text-[licorice]/70 mb-6">
+          <p className="text-licorice/70 mb-6">
             {searchQuery
               ? `No products match "${searchQuery}". Try a different search.`
               : "Get started by creating your first product."}

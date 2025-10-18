@@ -58,16 +58,16 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     <>
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <nav className="mb-6 flex items-center space-x-2 text-sm">
-          <Link href="/products" className="text-[giants-orange] hover:underline">
+          <Link href="/products" className="text-giants-orange hover:underline">
             Products
           </Link>
-          <span className="text-[licorice]/40">/</span>
-          <span className="text-[licorice]/70">{product.name}</span>
+          <span className="text-licorice/40">/</span>
+          <span className="text-licorice/70">{product.name}</span>
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="space-y-4">
-            <div className="relative aspect-square bg-white rounded-xl shadow-md overflow-hidden border-2 border-[licorice]">
+            <div className="relative aspect-square bg-white rounded-xl shadow-md overflow-hidden border-2 border-licorice">
               {!imageError && product.images[currentImageIndex] ? (
                 <Image
                   src={product.images[currentImageIndex]}
@@ -79,7 +79,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                   onError={() => setImageError(true)}
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-[licorice]/40">
+                <div className="w-full h-full flex items-center justify-center text-licorice/40">
                   <Package className="w-24 h-24" />
                 </div>
               )}
@@ -91,14 +91,14 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                     className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all"
                     aria-label="Previous image"
                   >
-                    <ChevronLeft className="w-6 h-6 text-[licorice]" />
+                    <ChevronLeft className="w-6 h-6 text-licorice" />
                   </button>
                   <button
                     onClick={nextImage}
                     className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all"
                     aria-label="Next image"
                   >
-                    <ChevronRight className="w-6 h-6 text-[licorice]" />
+                    <ChevronRight className="w-6 h-6 text-licorice" />
                   </button>
                 </>
               )}
@@ -115,8 +115,8 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                     }}
                     className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
                       index === currentImageIndex
-                        ? "border-[giants-orange] ring-2 ring-[giants-orange]/50"
-                        : "border-[licorice] hover:border-[mindaro]"
+                        ? "border-giants-orange ring-2 ring-giants-orange/50"
+                        : "border-licorice hover:border-mindaro"
                     }`}
                   >
                     <Image
@@ -134,36 +134,36 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
           <div className="space-y-6">
             {product.category && (
-              <span className="inline-block px-3 py-1 rounded-full text-sm font-medium bg-[mindaro] text-[licorice] border border-[licorice]">
+              <span className="inline-block px-3 py-1 rounded-full text-sm font-medium bg-mindaro text-licorice border border-licorice">
                 {product.category.name}
               </span>
             )}
 
             <div>
-              <h1 className="text-4xl font-bold text-[licorice] mb-4">
+              <h1 className="text-4xl font-bold text-licorice mb-4">
                 {product.name}
               </h1>
-              <p className="text-5xl font-bold text-[giants-orange]">
+              <p className="text-5xl font-bold text-giants-orange">
                 {formatPrice(product.price)}
               </p>
             </div>
 
-            <div className="border-t-2 border-b-2 border-[beige] py-6">
-              <h2 className="text-lg font-semibold text-[licorice] mb-3">
+            <div className="border-t-2 border-b-2 border-beige py-6">
+              <h2 className="text-lg font-semibold text-licorice mb-3">
                 Description
               </h2>
-              <p className="text-[licorice]/70 leading-relaxed whitespace-pre-wrap">
+              <p className="text-licorice/70 leading-relaxed whitespace-pre-wrap">
                 {product.description}
               </p>
             </div>
 
-            <div className="space-y-2 text-sm text-[licorice]/70">
+            <div className="space-y-2 text-sm text-licorice/70">
               <p>
-                <span className="font-medium text-[licorice]">Created:</span>{" "}
+                <span className="font-medium text-licorice">Created:</span>{" "}
                 {formatDate(product.createdAt)}
               </p>
               <p>
-                <span className="font-medium text-[licorice]">
+                <span className="font-medium text-licorice">
                   Last Updated:
                 </span>{" "}
                 {formatDate(product.updatedAt)}

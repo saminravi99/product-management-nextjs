@@ -51,8 +51,8 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-[licorice] mb-2">Welcome Back</h1>
-        <p className="text-[licorice]/70">
+        <h1 className="text-3xl font-bold text-licorice mb-2">Welcome Back</h1>
+        <p className="text-licorice/70">
           Enter your email to access the product management system
         </p>
       </div>
@@ -83,7 +83,7 @@ export default function LoginForm() {
         Sign In
       </Button>
 
-      <p className="text-xs text-center text-[licorice]/50">
+      <p className="text-xs text-center text-licorice/50">
         Use the same email you provided in your job application
       </p>
     </form>
