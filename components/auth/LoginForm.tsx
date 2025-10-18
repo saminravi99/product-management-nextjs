@@ -87,7 +87,7 @@ export default function LoginForm() {
       </Button>
 
       <p className="text-xs text-center text-licorice/65 dark:text-baby-powder/65">
-        Use the same email you provided in your job application
+        Use this email saminisrar1@gmail.com for login.
       </p>
     </form>
   );
