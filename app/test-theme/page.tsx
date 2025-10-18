@@ -1,58 +1,68 @@
 "use client";
 
-import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
-import { setTheme, toggleTheme } from "@/lib/store/slices/themeSlice";
-import { useEffect } from "react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export default function TestThemePage() {
-  const dispatch = useAppDispatch();
-  const theme = useAppSelector((state) => state.theme.theme);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme, resolvedTheme } = useTheme();
+
+  // useEffect only runs on the client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
+    if (!mounted) return;
+
     console.log("📊 TestTheme Page Mounted");
-    console.log("📊 Current theme from Redux:", theme);
+    console.log("📊 Current theme from next-themes:", theme);
+    console.log("📊 Resolved theme:", resolvedTheme);
     console.log(
       "📊 HTML classList:",
       document.documentElement.classList.toString()
     );
     console.log("📊 localStorage keys:", Object.keys(localStorage));
-    console.log(
-      "📊 localStorage producthub-theme:",
-      localStorage.getItem("producthub-theme")
+    console.log("📊 localStorage theme:", localStorage.getItem("theme"));
+  }, [theme, resolvedTheme, mounted]);
+
+  if (!mounted) {
+    return (
+      <div className="min-h-screen p-8 bg-baby-powder dark:bg-[#0f0d0b] text-licorice dark:text-baby-powder">
+        <h1 className="text-4xl font-bold mb-8">Loading...</h1>
+      </div>
     );
-    console.log(
-      "📊 localStorage persist:producthub-root:",
-      localStorage.getItem("persist:producthub-root")
-    );
-  }, [theme]);
+  }
 
   return (
-    <div className="min-h-screen p-8 bg-baby-powder dark:bg-licorice text-licorice dark:text-baby-powder">
+    <div className="min-h-screen p-8 bg-baby-powder dark:bg-[#0f0d0b] text-licorice dark:text-baby-powder">
       <h1 className="text-4xl font-bold mb-8">Theme Test Page</h1>
 
       <div className="space-y-4 max-w-2xl">
         <div className="p-6 border-2 border-licorice dark:border-mindaro rounded-lg bg-white dark:bg-[#1a1612]">
           <h2 className="text-2xl font-semibold mb-4">Current Theme State</h2>
           <p className="text-xl mb-2">
-            <strong>Redux Theme:</strong>{" "}
+            <strong>next-themes Theme:</strong>{" "}
             <span className="font-mono bg-mindaro text-licorice px-2 py-1 rounded">
-              {theme}
+              {theme || "undefined"}
+            </span>
+          </p>
+          <p className="text-xl mb-2">
+            <strong>Resolved Theme:</strong>{" "}
+            <span className="font-mono bg-mindaro text-licorice px-2 py-1 rounded">
+              {resolvedTheme || "undefined"}
             </span>
           </p>
           <p className="text-xl mb-4">
             <strong>HTML Class:</strong>{" "}
             <span className="font-mono bg-mindaro text-licorice px-2 py-1 rounded">
-              {typeof window !== "undefined"
-                ? document.documentElement.classList.toString() || "none"
-                : "SSR"}
+              {document.documentElement.classList.toString() || "none"}
             </span>
           </p>
           <p className="text-xl mb-2">
-            <strong>LocalStorage (persist:producthub-root):</strong>
+            <strong>LocalStorage (theme):</strong>
             <span className="font-mono bg-mindaro text-licorice px-2 py-1 rounded text-sm block mt-1">
-              {typeof window !== "undefined"
-                ? localStorage.getItem("persist:producthub-root") || "null"
-                : "SSR"}
+              {localStorage.getItem("theme") || "null"}
             </span>
           </p>
         </div>
@@ -63,7 +73,7 @@ export default function TestThemePage() {
             <button
               onClick={() => {
                 console.log("🔵 Toggling theme...");
-                dispatch(toggleTheme());
+                setTheme(theme === "dark" ? "light" : "dark");
               }}
               className="px-6 py-3 bg-mindaro text-licorice rounded-lg font-semibold hover:bg-giants-orange hover:text-white transition-colors"
             >
@@ -73,7 +83,7 @@ export default function TestThemePage() {
             <button
               onClick={() => {
                 console.log("☀️ Setting to light...");
-                dispatch(setTheme("light"));
+                setTheme("light");
               }}
               className="px-6 py-3 bg-baby-powder text-licorice border-2 border-licorice rounded-lg font-semibold hover:bg-beige transition-colors"
             >
@@ -83,7 +93,7 @@ export default function TestThemePage() {
             <button
               onClick={() => {
                 console.log("🌙 Setting to dark...");
-                dispatch(setTheme("dark"));
+                setTheme("dark");
               }}
               className="px-6 py-3 bg-licorice text-baby-powder rounded-lg font-semibold hover:bg-[#0f0d0b] transition-colors"
             >
@@ -107,7 +117,7 @@ export default function TestThemePage() {
         <div className="p-6 border-2 border-licorice dark:border-mindaro rounded-lg bg-white dark:bg-[#1a1612]">
           <h2 className="text-2xl font-semibold mb-4">Visual Test</h2>
           <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 bg-baby-powder dark:bg-licorice border-2 border-licorice dark:border-mindaro rounded">
+            <div className="p-4 bg-baby-powder dark:bg-[#0f0d0b] border-2 border-licorice dark:border-mindaro rounded">
               <p className="font-semibold">Background adapts</p>
               <p className="text-sm opacity-70">
                 This box should change colors
