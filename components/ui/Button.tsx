@@ -10,15 +10,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[#f05d23] text-white shadow hover:bg-[#f05d23]/90 focus-visible:ring-[#f05d23]",
+          "bg-giants-orange text-white shadow hover:bg-giants-orange/90 focus-visible:ring-giants-orange",
         destructive:
-          "bg-red-600 text-white shadow-sm hover:bg-red-600/90 focus-visible:ring-red-600",
+          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
-          "border-2 border-[#261c15] bg-transparent shadow-sm hover:bg-[#e4e6c3] hover:text-[#261c15] focus-visible:ring-[#261c15]",
+          "border-2 border-licorice bg-transparent shadow-sm hover:bg-beige hover:text-licorice focus-visible:ring-licorice",
         secondary:
-          "bg-[#c5d86d] text-[#261c15] shadow-sm hover:bg-[#c5d86d]/80 focus-visible:ring-[#c5d86d]",
-        ghost: "hover:bg-[#e4e6c3] hover:text-[#261c15]",
-        link: "text-[#f05d23] underline-offset-4 hover:underline",
+          "bg-mindaro text-licorice shadow-sm hover:bg-mindaro/80 focus-visible:ring-mindaro",
+        ghost: "hover:bg-beige hover:text-licorice",
+        link: "text-giants-orange underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -28,21 +28,21 @@ export default async function CreateProductPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f7f7f2] flex flex-col">
+    <div className="min-h-screen bg-[baby-powder] flex flex-col">
       <Header />
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-3xl flex-1">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-[#261c15] mb-2">
+          <h1 className="text-4xl font-bold text-[licorice] mb-2">
             Create New Product
           </h1>
-          <p className="text-[#261c15]/70">
+          <p className="text-[licorice]/70">
             Add a new product to your catalog. All fields marked with * are
             required.
           </p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-md p-6 sm:p-8 border-2 border-[#261c15]">
+        <div className="bg-white rounded-xl shadow-md p-6 sm:p-8 border-2 border-[licorice]">
           <ProductForm onSubmit={handleSubmit} categories={categories} />
         </div>
       </main>

@@ -23,14 +23,14 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b-2 border-[#261c15] bg-white shadow-sm dark:bg-[#261c15] dark:border-[#c5d86d]">
+    <header className="sticky top-0 z-40 w-full border-b-2 border-licorice bg-white shadow-sm dark:bg-licorice dark:border-mindaro">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link
             href="/products"
-            className="flex items-center space-x-2 text-xl font-bold text-[#261c15] dark:text-[#f7f7f2] hover:text-[#f05d23] dark:hover:text-[#f05d23] transition-colors"
+            className="flex items-center space-x-2 text-xl font-bold text-licorice dark:text-baby-powder hover:text-giants-orange dark:hover:text-giants-orange transition-colors"
           >
-            <Package className="w-8 h-8 text-[#f05d23]" />
+            <Package className="w-8 h-8 text-giants-orange" />
             <span>ProductHub</span>
           </Link>
 
@@ -43,8 +43,8 @@ export default function Header() {
                   href={item.href}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                     isActive
-                      ? "bg-[#c5d86d] text-[#261c15]"
-                      : "text-[#261c15]/70 dark:text-[#f7f7f2]/70 hover:bg-[#e4e6c3] dark:hover:bg-[#f7f7f2]/10 hover:text-[#261c15] dark:hover:text-[#f7f7f2]"
+                      ? "bg-mindaro text-licorice"
+                      : "text-licorice/70 dark:text-baby-powder/70 hover:bg-beige dark:hover:bg-baby-powder/10 hover:text-licorice dark:hover:text-baby-powder"
                   }`}
                 >
                   {item.name}

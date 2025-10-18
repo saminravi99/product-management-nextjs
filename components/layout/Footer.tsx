@@ -3,28 +3,26 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#261c15] text-[#f7f7f2] border-t-2 border-[#c5d86d]">
+    <footer className="bg-licorice text-baby-powder border-t-2 border-mindaro">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Package className="w-8 h-8 text-[#f05d23]" />
+              <Package className="w-8 h-8 text-giants-orange" />
               <span className="text-xl font-bold">ProductHub</span>
             </div>
-            <p className="text-[#f7f7f2]/70 text-sm">
+            <p className="text-baby-powder/70 text-sm">
               Modern product management solution for businesses of all sizes.
             </p>
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-[#c5d86d]">
-              Product
-            </h3>
+            <h3 className="font-semibold text-lg mb-4 text-mindaro">Product</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   href="/products"
-                  className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors"
+                  className="text-baby-powder/70 hover:text-giants-orange transition-colors"
                 >
                   All Products
                 </Link>
@@ -32,7 +30,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/products/create"
-                  className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors"
+                  className="text-baby-powder/70 hover:text-giants-orange transition-colors"
                 >
                   Add Product
                 </Link>
@@ -41,14 +39,14 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-[#c5d86d]">
+            <h3 className="font-semibold text-lg mb-4 text-mindaro">
               Resources
             </h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
                   href="#"
-                  className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors"
+                  className="text-baby-powder/70 hover:text-giants-orange transition-colors"
                 >
                   Documentation
                 </a>
@@ -56,7 +54,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors"
+                  className="text-baby-powder/70 hover:text-giants-orange transition-colors"
                 >
                   API Reference
                 </a>
@@ -64,7 +62,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors"
+                  className="text-baby-powder/70 hover:text-giants-orange transition-colors"
                 >
                   Support
                 </a>
@@ -73,27 +71,25 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-[#c5d86d]">
-              Connect
-            </h3>
+            <h3 className="font-semibold text-lg mb-4 text-mindaro">Connect</h3>
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors"
+                className="text-baby-powder/70 hover:text-giants-orange transition-colors"
                 aria-label="GitHub"
               >
                 <Github className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors"
+                className="text-baby-powder/70 hover:text-giants-orange transition-colors"
                 aria-label="Twitter"
               >
                 <Twitter className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="text-[#f7f7f2]/70 hover:text-[#f05d23] transition-colors"
+                className="text-baby-powder/70 hover:text-giants-orange transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
@@ -102,7 +98,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-[#f7f7f2]/20 mt-8 pt-8 text-center text-sm text-[#f7f7f2]/70">
+        <div className="border-t border-baby-powder/20 mt-8 pt-8 text-center text-sm text-baby-powder/70">
           <p>
             © 2025 ProductHub. All rights reserved. Built with Next.js and
             Tailwind CSS.
