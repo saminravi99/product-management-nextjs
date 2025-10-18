@@ -10,16 +10,16 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-giants-orange text-white shadow hover:bg-giants-orange/90 focus-visible:ring-giants-orange",
+          "bg-giants-orange text-white shadow-lg hover:bg-giants-orange/90 hover:shadow-xl focus-visible:ring-giants-orange dark:shadow-mindaro/20",
         destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+          "bg-red-600 text-white shadow-lg hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600",
         outline:
-          "border-2 border-licorice bg-transparent shadow-sm hover:bg-beige hover:text-licorice focus-visible:ring-licorice dark:border-baby-powder dark:hover:bg-baby-powder/10 dark:hover:text-baby-powder",
+          "border-2 border-licorice bg-white shadow-sm hover:bg-giants-orange hover:text-white hover:border-giants-orange focus-visible:ring-licorice dark:bg-licorice dark:border-mindaro dark:text-baby-powder dark:hover:bg-mindaro dark:hover:text-licorice dark:hover:border-mindaro",
         secondary:
-          "bg-mindaro text-licorice shadow-sm hover:bg-mindaro/80 focus-visible:ring-mindaro",
+          "bg-mindaro text-licorice shadow-lg hover:bg-mindaro/90 hover:shadow-xl focus-visible:ring-mindaro dark:bg-mindaro dark:text-licorice dark:hover:bg-mindaro/80 font-semibold",
         ghost:
-          "text-licorice hover:bg-beige hover:text-licorice dark:text-baby-powder dark:hover:bg-baby-powder/10 dark:hover:text-baby-powder",
-        link: "text-giants-orange underline-offset-4 hover:underline dark:text-giants-orange",
+          "text-licorice hover:bg-giants-orange/10 hover:text-giants-orange dark:text-baby-powder dark:hover:bg-mindaro/20 dark:hover:text-mindaro border border-transparent hover:border-giants-orange/30 dark:hover:border-mindaro/30",
+        link: "text-giants-orange underline-offset-4 hover:underline dark:text-mindaro",
       },
       size: {
         default: "h-10 px-4 py-2",
