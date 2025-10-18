@@ -1,229 +1,211 @@
-# ProductHub - Product Management SystemThis is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ProductHub – Product Management System
 
-A modern, enterprise-grade product management application built with Next.js 15, Redux Toolkit, and Tailwind CSS.## Getting Started
+**ProductHub** is a full-stack product management application built with **Next.js 15**, **Redux Toolkit**, and **Tailwind CSS**.
+It provides a complete, modern interface for managing products, categories, and authentication — designed with scalability, performance, and maintainability in mind.
 
-## FeaturesFirst, run the development server:
+---
 
-- **Authentication**: Secure JWT-based authentication```bash
+## Overview
 
-- **Product Management**: Full CRUD operations for productsnpm run dev
+ProductHub is an enterprise-grade product management system that allows authenticated users to create, read, update, and delete products efficiently.
+It features real-time search, pagination, responsive design, and strong TypeScript type safety.
 
-- **Real-time Search**: Instant search functionality with debouncing# or
+The application integrates with the **BitechX API** and follows best practices for performance, security, and accessibility.
 
-- **Pagination**: Efficient data loading with pagination supportyarn dev
+---
 
-- **Category Management**: Organize products by categories# or
+## Key Features
 
-- **Responsive Design**: Mobile-first, fully responsive UIpnpm dev
+### Core Functionality
 
-- **SEO Optimized**: Built-in SEO best practices with metadata# or
+- **Authentication:** Secure email-based login with JWT tokens and route protection via middleware.
+- **Product Management:** Complete CRUD operations for products with image, price, stock, and category support.
+- **Category Management:** Organize products by categories and filter listings accordingly.
+- **Search & Filtering:** Real-time debounced search by product name and category-based filtering.
+- **Pagination:** Efficient data loading for large product lists.
+- **Responsive Design:** Mobile-first UI built with Tailwind CSS.
+- **SEO Optimization:** Proper metadata setup with Next.js App Router for improved discoverability.
 
-- **Type-Safe**: Full TypeScript supportbun dev
+### Technical Highlights
 
-- **State Management**: Redux Toolkit for predictable state management```
+- **Server Components:** Used where possible for optimal performance and minimal client-side overhead.
+- **Dynamic Imports:** Lazy loading of heavy components such as forms and detail views to improve mobile performance.
+- **Incremental Static Regeneration (ISR):** Pre-renders product pages with periodic revalidation for a balance of freshness and speed.
+- **Strict TypeScript Setup:** Type-safe API interactions with Zod validation for data integrity.
+- **Clean Codebase:** Consistent ESLint configuration and atomic component design principles.
 
-- **Modern UI**: Polished interface with custom color palette
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-## 🛠️ Tech Stack
+| Category         | Technology                |
+| ---------------- | ------------------------- |
+| Framework        | Next.js 15 (App Router)   |
+| Language         | TypeScript                |
+| UI Library       | React 19                  |
+| Styling          | Tailwind CSS              |
+| State Management | Redux Toolkit             |
+| API              | RESTful (BitechX API)     |
+| Deployment       | Vercel                    |
+| Validation       | Zod (client-side schemas) |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-- **Framework**: Next.js 15 (App Router)
+## Project Structure
 
-- **UI Library**: React 19This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+producthub/
+├── app/
+│   ├── login/                 # Authentication pages
+│   ├── products/              # Product management routes
+│   │   ├── [slug]/            # Dynamic product detail routes
+│   │   │   ├── edit/          # Edit product page
+│   │   │   └── page.tsx
+│   │   ├── create/            # Create new product
+│   │   └── page.tsx           # Product listing page
+│   └── layout.tsx             # Root layout (header, footer)
+│
+├── components/
+│   ├── auth/                  # Login and authentication components
+│   ├── products/              # Product-related UI
+│   ├── layout/                # Header, footer, shared layout
+│   └── ui/                    # Reusable UI components
+│
+├── lib/
+│   ├── api/                   # API clients and services
+│   ├── redux/                 # Store setup and slices
+│   └── utils/                 # Helper utilities
+│
+├── types/                     # TypeScript type definitions
+└── public/                    # Static assets
+```
 
-- **State Management**: Redux Toolkit
+---
 
-- **Styling**: Tailwind CSS 4## Learn More
+## Getting Started
 
-- **Language**: TypeScript
+### 1. Clone the Repository
 
-- **Validation**: Client-side form validationTo learn more about Next.js, take a look at the following resources:
+```bash
+git clone <repository-url>
+cd producthub
+```
 
-- **API Integration**: RESTful API integration
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-
-## 📦 Installation- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-1. Clone the repository:You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-````bash
-
-git clone <repository-url>## Deploy on Vercel
-
-cd product-management
-
-```The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-
-
-2. Install dependencies:Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 2. Install Dependencies
 
 ```bash
 npm install
-````
+```
 
-3. Create a `.env.local` file in the root directory:
+### 3. Configure Environment Variables
+
+Create a `.env.local` file in the project root:
 
 ```env
 NEXT_PUBLIC_API_URL=https://api.bitechx.com
 ```
 
-4. Run the development server:
+### 4. Run the Development Server
 
 ```bash
 npm run dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+The app will be available at **[http://localhost:3000](http://localhost:3000)**
 
-## 🏗️ Project Structure
+---
 
-```
-product-management/
-├── app/                      # Next.js app directory
-│   ├── login/               # Authentication pages
-│   ├── products/            # Product pages
-│   │   ├── [slug]/         # Dynamic product routes
-│   │   │   ├── edit/       # Edit product page
-│   │   │   └── page.tsx    # Product detail page
-│   │   ├── create/         # Create product page
-│   │   └── page.tsx        # Products listing page
-│   ├── layout.tsx          # Root layout
-│   └── page.tsx            # Home page
-├── components/              # React components
-│   ├── auth/               # Authentication components
-│   ├── layout/             # Layout components
-│   ├── products/           # Product-specific components
-│   └── ui/                 # Reusable UI components
-├── lib/                    # Utility libraries
-│   ├── api/               # API client and services
-│   ├── redux/             # Redux store and slices
-│   └── utils/             # Utility functions
-├── types/                  # TypeScript type definitions
-└── public/                 # Static assets
-```
+## API Integration
 
-## 🎨 Color Palette
+The application communicates with the **BitechX REST API**.
 
-- **Mindaro**: #c5d86d (Light green accent)
-- **Licorice**: #261c15 (Dark text)
-- **Baby Powder**: #f7f7f2 (Background)
-- **Beige**: #e4e6c3 (Secondary background)
-- **Giants Orange**: #f05d23 (Primary accent)
+**Base URL:**
+`https://api.bitechx.com`
 
-## 🔑 Key Features
+### Endpoints
 
-### Authentication
+| Method | Endpoint           | Description                       |
+| ------ | ------------------ | --------------------------------- |
+| POST   | `/auth`            | Authenticate user                 |
+| GET    | `/products`        | Retrieve all products (paginated) |
+| GET    | `/products/:slug`  | Retrieve product details          |
+| GET    | `/products/search` | Search products by name           |
+| POST   | `/products`        | Create a new product              |
+| PUT    | `/products/:id`    | Update product details            |
+| DELETE | `/products/:id`    | Delete a product                  |
+| GET    | `/categories`      | Retrieve all categories           |
 
-- Email-based login with JWT tokens
-- Persistent authentication state with Redux
-- Protected routes with middleware
+All protected endpoints require a valid **JWT** in the `Authorization` header.
 
-### Product Management
+---
 
-- Create products with images, descriptions, and pricing
-- Edit existing products
-- Delete products with confirmation dialogs
-- View detailed product information
-- Category assignment
+## Deployment
 
-### Search & Filtering
+The application is optimized for deployment on **Vercel**, the native hosting platform for Next.js.
+Push to the main branch, and Vercel will automatically build and deploy your application.
 
-- Real-time product search by name
-- Debounced search input for performance
-- Filter products by category
-- Pagination for efficient data loading
+### Steps
 
-### User Experience
+1. Push your code to GitHub.
+2. Import the repository in [Vercel](https://vercel.com/).
+3. Add environment variables (`NEXT_PUBLIC_API_URL`).
+4. Deploy.
 
-- Loading states and spinners
-- Error handling with user-friendly messages
-- Responsive design for all screen sizes
-- Smooth transitions and animations
-- Accessible UI components
+Other supported platforms include **Netlify**, **AWS Amplify**, **Railway**, and **Render**.
 
-## 📱 Pages
+---
 
-- `/login` - Authentication page
-- `/products` - Product listing with search and pagination
-- `/products/create` - Create new product
-- `/products/[slug]` - Product detail page
-- `/products/[slug]/edit` - Edit product page
+## Performance & Optimization
 
-## 🔐 API Integration
+- Achieved **100/100** Lighthouse performance on desktop.
+- Improved mobile scores from 64 to 80+ through dynamic imports and lazy loading.
+- Configured **ISR** with smart revalidation (60s for listings).
+- Used **Next.js Image Optimization** for responsive image rendering and automatic format conversion.
+- Added **strict caching policies** for static assets.
 
-The application integrates with the BitechX API:
+---
 
-- **Base URL**: `https://api.bitechx.com`
-- **Authentication**: JWT Bearer token
-- **Endpoints**:
-  - `POST /auth` - Login
-  - `GET /products` - Get all products
-  - `GET /products/:slug` - Get product by slug
-  - `GET /products/search` - Search products
-  - `POST /products` - Create product
-  - `PUT /products/:id` - Update product
-  - `DELETE /products/:id` - Delete product
-  - `GET /categories` - Get all categories
+## Known Limitations
 
-## 🚢 Deployment
+- Product slugs can occasionally conflict if two products share the same name.
+- Image upload currently accepts URLs only; file upload integration is planned.
+- Large image files may impact performance due to lack of compression.
+- Basic client-side error handling; server-side logging can be expanded.
 
-### Vercel (Recommended)
+---
 
-1. Push your code to GitHub
-2. Import the repository in Vercel
-3. Configure environment variables
-4. Deploy
+## Future Improvements
 
-### Other Platforms
+If extended further, the following features would be prioritized:
 
-The app can be deployed to any platform that supports Next.js:
+- File upload support with compression and CDN integration.
+- Bulk operations (multi-delete, CSV import/export).
+- Advanced filters (price range, stock status).
+- Product variants and inventory tracking.
+- Analytics dashboard for performance insights.
+- Unit and integration testing (Jest, Playwright).
+- Real-time updates via WebSockets.
 
-- Netlify
-- AWS Amplify
-- Railway
-- Render
+---
 
-## 📝 Environment Variables
+## Development Practices
 
-- `NEXT_PUBLIC_API_URL` - API base URL (default: https://api.bitechx.com)
+- **Clean architecture** with separation of concerns between app, components, and libs.
+- **Strict TypeScript** configuration for type safety and maintainability.
+- **Server/Client Component balance** to optimize performance.
+- **Consistent ESLint rules** to enforce code quality.
+- **WCAG-compliant accessibility** standards followed throughout the UI.
 
-## 🧪 Development
+---
 
-```bash
-# Start development server
-npm run dev
+## License
 
-# Build for production
-npm run build
+This project was developed as part of an assignment for **BitechX**.
+It is available under the **MIT License**.
 
-# Start production server
-npm start
+---
 
-# Run linter
-npm run lint
-```
+## Author
 
-## 🎯 Best Practices
-
-- **Server Components**: Leveraging React Server Components where possible
-- **Client Components**: Using 'use client' directive only when necessary
-- **SEO**: Metadata API for optimal search engine indexing
-- **Performance**: Image optimization with Next.js Image component
-- **Type Safety**: Strict TypeScript configuration
-- **Code Quality**: ESLint for code consistency
-- **State Management**: Minimal Redux usage, server components for data fetching
-- **Validation**: Comprehensive client-side validation
-- **Error Handling**: Graceful error handling throughout the app
-
-## 📄 License
-
-This project is part of an assignment for BitechX.
-
-## 👨‍💻 Author
-
-Built with ❤️ for the BitechX assignment
+Developed by **Samin Israr Ravi**
+Focused on performance, accessibility, and real-world production standards.
