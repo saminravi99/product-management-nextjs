@@ -22,12 +22,27 @@ interface ProductDetailsProps {
   product: Product;
 }
 
+// Helper function to validate image URL
+const isValidImageUrl = (url: string | undefined): boolean => {
+  if (!url) return false;
+  try {
+    const urlObj = new URL(url);
+    return urlObj.protocol === "http:" || urlObj.protocol === "https:";
+  } catch {
+    return false;
+  }
+};
+
 export default function ProductDetails({ product }: ProductDetailsProps) {
   const router = useRouter();
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageError, setImageError] = useState(false);
+
+  // Check if the current image is valid
+  const currentImageUrl = product.images[currentImageIndex];
+  const hasValidImage = !imageError && isValidImageUrl(currentImageUrl);
 
   const handleDelete = async () => {
     setIsDeleting(true);
@@ -68,9 +83,9 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="space-y-4">
             <div className="relative aspect-square bg-white rounded-xl shadow-md overflow-hidden border-2 border-licorice">
-              {!imageError && product.images[currentImageIndex] ? (
+              {hasValidImage ? (
                 <Image
-                  src={product.images[currentImageIndex]}
+                  src={currentImageUrl}
                   alt={product.name}
                   fill
                   className="object-contain p-4"
@@ -106,28 +121,37 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
             {product.images.length > 1 && (
               <div className="flex gap-2 overflow-x-auto pb-2">
-                {product.images.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setCurrentImageIndex(index);
-                      setImageError(false);
-                    }}
-                    className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                      index === currentImageIndex
-                        ? "border-giants-orange ring-2 ring-giants-orange/50"
-                        : "border-licorice hover:border-mindaro"
-                    }`}
-                  >
-                    <Image
-                      src={image}
-                      alt={`${product.name} ${index + 1}`}
-                      fill
-                      className="object-cover"
-                      sizes="80px"
-                    />
-                  </button>
-                ))}
+                {product.images.map((image, index) => {
+                  const isValidThumb = isValidImageUrl(image);
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        setCurrentImageIndex(index);
+                        setImageError(false);
+                      }}
+                      className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                        index === currentImageIndex
+                          ? "border-giants-orange ring-2 ring-giants-orange/50"
+                          : "border-licorice hover:border-mindaro"
+                      }`}
+                    >
+                      {isValidThumb ? (
+                        <Image
+                          src={image}
+                          alt={`${product.name} ${index + 1}`}
+                          fill
+                          className="object-cover"
+                          sizes="80px"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-baby-powder">
+                          <Package className="w-8 h-8 text-licorice/40" />
+                        </div>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             )}
           </div>

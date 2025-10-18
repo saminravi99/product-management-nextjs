@@ -22,11 +22,25 @@ interface ProductCardProps {
   product: Product;
 }
 
+// Helper function to validate image URL
+const isValidImageUrl = (url: string | undefined): boolean => {
+  if (!url) return false;
+  try {
+    const urlObj = new URL(url);
+    return urlObj.protocol === "http:" || urlObj.protocol === "https:";
+  } catch {
+    return false;
+  }
+};
+
 export default function ProductCard({ product }: ProductCardProps) {
   const router = useRouter();
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+
+  // Check if the product has a valid image URL
+  const hasValidImage = !imageError && isValidImageUrl(product.images[0]);
 
   const handleDelete = async () => {
     setIsDeleting(true);
@@ -46,7 +60,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <article className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-licorice hover:border-mindaro">
         <Link href={`/products/${product.slug}`} className="block">
           <div className="relative h-48 sm:h-56 bg-baby-powder overflow-hidden">
-            {!imageError && product.images[0] ? (
+            {hasValidImage ? (
               <Image
                 src={product.images[0]}
                 alt={product.name}
